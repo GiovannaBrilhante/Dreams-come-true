@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "Gptlpzv+4a+pOsWEZjLf4z5PrMU7/fsDIa3/nawKaxhtuZMUcNfAbzK0NrGP4tjoa4Ov1W2+XzWcUpPp5dZHDQ==",
+  "success": true,
+  "projectFilePath": "/Users/u21431/Dreams-come-true/dreams_API/dreams_API.csproj",
+  "expectedPackageFiles": [
+    "/Users/u21431/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "/Users/u21431/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/u21431/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "/Users/u21431/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "/Users/u21431/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "/Users/u21431/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}
