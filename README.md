@@ -1,74 +1,65 @@
-<<<<<<< HEAD
-# Getting Started with Create React App
+<h2 align="center">
+    <img alt="Dreams Banner" title="" src="https://user-images.githubusercontent.com/53992405/201239750-794c4776-c013-45a3-8712-21f2c9897d77.jpg" width="500px" />
+</h2>
+<p align="center">
+  <h1 align="center">Dreams Come True | React & DotNet :rocket:</h1>
+</p>
+<p align="center">
+  <a href="#-sobre">Sobre o Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-contributing">Contribuição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-networks">Redes</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-equipe">Equipe</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-license">Licença</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 💻 Sobre
+Dreams come True é uma aplicação WEB react orientada a uma API em dotnet e banco de dados, que trabalha com restaurantes inspirados em filmes, o mesmo foi desenvolvido pela dupla Giovanna Brilhante e Gabriel Santana, durante a matéria de durante a matéria de Desenvolvimento para Internet III, com orientações da professora Patrícia no Colégio Técnico de Campinas - Unicamp.
+___
 
-## Available Scripts
+## 📃 Descrição
+Em nossa aplicação esses restaurantes podem ser baseados, em series ou mesmo filmes, sejam eles da disney ou de outras companhias, assim, podendo fazer o crud com esses restaurantes e os exibindo, também seu rating, filme inspirado e descrições. O projeto tem como objetivo obter aprovação no projeto final da professora Patrícia, além de treinarmos conhecimentos de login, roles, data annotations, api, crud, react, json, design, css e outras frameworks/ferramentas. 
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🖋️ Contributing
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Fique à vontade para enviar sugestões, dicas ou até mesmo reconstruir o código, mas mastenha a autoria do projeto e não utiliza-o de maneira indevida ou de forma a prejudicar o projeto ou marca.
 
-### `npm test`
+#### 🌐❤ Networks Gabriel:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[<img alt="GitHub followers Gabriel" src="https://img.shields.io/github/followers/PuniGC?label=Follow&style=social" height="22" title="Follow me"/>][github-ga]
+[<img alt="Instagram Gabriel" src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white&link=instagram.com/gabrielsants_dev/" height="22" />][instagram-ga]
+[<img alt="Mail to Gabriel" src="https://img.shields.io/badge/-Gmail-c14438?style=flat&logo=Gmail&logoColor=white" height="22" title="gabriel04.ok@gmail.com" />][email-ga]
+[<img alt="Linkedin Gabriel" src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/gabriel-santana-silva-1205461a3/" height="22" />][linkedin-ga]
 
-### `npm run build`
+#### 🌐❤ Networks Giovanna:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+[<img alt="GitHub followers Giovanna" src="https://img.shields.io/github/followers/GiovannaBrilhante?label=Follow&style=social" height="22" title="Follow me"/>][github-gi]
+[<img alt="Instagram Giovanna" src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white&link=instagram.com/gi_maria_cb/" height="22" />][instagram-gi]
+[<img alt="Mail to Giovanna" src="https://img.shields.io/badge/-Gmail-c14438?style=flat&logo=Gmail&logoColor=white" height="22" title="bricamagi@gmail.com" />][email-gi]
+[<img alt="Linkedin Giovanna" src="https://img.shields.io/badge/-LinkedIn-blue?style=flat-square&logo=Linkedin&logoColor=white&link=https://www.linkedin.com/in/giovanna-brilhante/" height="22" />][linkedin-gi]
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 👨‍💻 Equipe
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+* **Gabriel Santana Silva** - *Owner* - [Instagram](https://www.instagram.com/gabrielsants_dev/)
+* **Giovanna Maria Do Carmo Brilhante** - *Owner* - [Instagram](https://www.instagram.com/gi_maria_cb/)
 
-### `npm run eject`
+## 📝 License
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+This project is licensed under the [MIT LICENSE][license].
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+[github-ga]: https://github.com/PuniGC
+[linkedin-ga]: https://www.linkedin.com/in/gabriel-santana-silva-1205461a3/
+[email-ga]: mailto:gabriel04.ok@gmail.com
+[instagram-ga]: https://www.instagram.com/gabrielsants_dev/
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[github-gi]: https://github.com/GiovannaBrilhante
+[linkedin-gi]: https://www.linkedin.com/in/giovanna-brilhante/
+[email-gi]: mailto:bricamagi@gmail.com
+[instagram-gi]: https://www.instagram.com/gi_maria_cb/
 
-## Learn More
+[license]: LICENSE
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 =======
-# Dreams-come-true
->>>>>>> 2ddcc1d4159c4becd46181cc5d96a25c809ce777
