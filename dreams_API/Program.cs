@@ -1,11 +1,63 @@
+using Microsoft.EntityFrameworkCore;
+using dreams_API.Data; 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+
 var builder = WebApplication.CreateBuilder(args);
 
+ConfigurationManager configuration = builder.Configuration;
+
+//Allow CORS
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+
+//Allow CORS
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy(MyAllowSpecificOrigins, builder => {
+        builder.WithOrigins("http://localhos").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+        builder.SetIsOriginAllowed(origin => true);
+    });
+});
+
 // Add services to the container.
+
+//Ading Authentication
+builder.Services.AddAuthentication(options => 
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+
+// Adding Jwt Bearer
+.AddJwtBearer(options => 
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+    options.TokenValidationParameters = new TokenValidationParameters()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidAudience = configuration["JWT: ValidAudience"],
+        ValidIssuer = configuration["JWT:ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
+    };
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+
+//Add DbContext
+builder.Services.AddDbContext<DreamsContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("StringConexaoSQLServer"));
+});
 
 var app = builder.Build();
 
@@ -17,7 +69,10 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+app.UseCors(MyAllowSpecificOrigins);
 
+//Authetication & Authorization
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
