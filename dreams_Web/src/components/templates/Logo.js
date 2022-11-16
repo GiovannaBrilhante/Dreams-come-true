@@ -1,6 +1,6 @@
 import "./Logo.css"
 import React from "react"
-import logo from "../../assets/images/logo_dream.png"
+import logo from "../../assets/images/logoDreamsComeTrue.png"
 
 export default function Logo(_props) {
     return (
