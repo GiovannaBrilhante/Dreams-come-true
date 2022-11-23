@@ -1,0 +1,19 @@
+{
+  "FilePath": "/Users/u21431/Dreams-come-true/dreams_API/dreams_API.csproj",
+  "Configuration": {
+    "ConfigurationName": "MVC-3.0",
+    "LanguageVersion": "6.0",
+    "Extensions": [
+      {
+        "ExtensionName": "MVC-3.0"
+      }
+    ]
+  },
+  "ProjectWorkspaceState": {
+    "TagHelpers": [],
+    "CSharpLanguageVersion": 1100
+  },
+  "RootNamespace": "dreams_API",
+  "Documents": [],
+  "SerializationFormat": "0.2"
+}
