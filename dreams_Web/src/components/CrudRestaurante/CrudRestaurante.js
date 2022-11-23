@@ -1,221 +1,162 @@
-import React, { Component } from "react"
-import "./CrudAluno.css"
-import Main from "../template/Main"
+import React, { useEffect, useState } from "react"
+import "./CrudRestaurante.css"
+import Main from "../templates/Main"
 import axios from "axios"
 
 import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 
-/*
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-
-const toastConfig = {
-    theme: "dark",
-    position: "bottom-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-}*/
-
 const title = "Cadastro de Alunos"
 
-const API_URL_ALUNO = "http://localhost:5147/api/aluno"
-const API_URL_CURSO = "http://localhost:5147/api/curso"
+const API_URL_RESTA = "http://localhost:5147/api/restaurante"
+//const API_URL_FILME = "http://localhost:5147/api/filme"
 const initialState = {
-    aluno: { id: 0, ra: "", nome: "", codCurso: "" },
-    lista: [],
-    listaCurso: []
+    restaurante: { id: 0, name: "", avaliacao: 5, codFilme: 0 },
+    filme: { id: 0, name: "", avaliacao: 5, ano: 0, categoria: "" },
+    listaRestaurantes: [{
+        idRestaurante: 1, name: "Restaurante 1", avaliacao: 5, codFilme: 1,
+    }],
+    listaFilmes: [{
+        idFilme: 1, name: "Para todos os garotos que ja amei", avaliacao: 5, ano: 1972, categoria: "Romance",
+    }],
 }
 
-import React, { useState, useEffect } from "react";
-import "../CrudCurso/CrudCurso.css";
-import Main from "../template/Main";
-import axios from "axios";
 
-import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs";
-/*
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
-
-const toastConfig = {
-    theme: "dark",
-    position: "bottom-right",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-}*/
-
-const sendSuccessPopUp = (text) => {
-    //toast.success(text, toastConfig);
-};
-
-const sendMultipleErrorPopUp = (err) => {
-    /*
-    let errors;
-    try {
-        errors = (err = err.response?.data?.errors
-            ? Object.values(err.response.data.errors)
-            : err);
-    } catch (err) {
-        errors = [err]
-    }
-
-    errors.forEach((err) => {
-        sendErrorPopUp(
-            `Falha ao conectar ao banco de dados: \n ${err}`
-        );
-    });*/
-};
-
-const API_URL = "http://localhost:5147/api/curso";
-const getDataFromApi = async () => {
-    return await axios(API_URL)
-        .then((resp) => resp.data)
-        .catch((err) => err);
-};
+export default function CrudRestaurante() {
+    const [restaurante, setRestaurante] = useState(initialState.restaurante)
+    const [listaRestaurantes, setListaRestaurantes] = useState(
+        initialState.listaRestaurantes
+    )
+    const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
+    setListaFilmes(initialState.listaFilmes)
 
 
-export default class CrudRestaurante extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { ...initialState }
-    }
-
-    useEffect() {
-        axios(API_URL_ALUNO)
+    useEffect(() => {/*
+        axios(API_URL_RESTA)
             .then((resp) => {
-                this.setState({ lista: resp.data })
+                setListaRestaurantes(resp.data)
             })
             .catch((err) => {
                 console.dir(err)
-
-                sendMultipleErrorPopUp(err)
             })
-
-        axios(API_URL_CURSO)
+        axios(API_URL_FILME)
             .then((resp) => {
-                this.setState({ listaCurso: resp.data })
+                setListaFilmes(resp.data)
             })
             .catch((err) => {
                 console.dir(err)
+            })*/
+    })
 
-                sendMultipleErrorPopUp(err)
-            })
+    const limparForm = () => {
+        setRestaurante(initialState.restaurante)
     }
 
-    const limpar = () => {
-        this.setState({ aluno: initialState.aluno })
-    }
+    const salvar = () => {
+        const restaurante = restaurante
+        const metodo = restaurante.id ? "put" : "post"
+        const url = restaurante.id
+            ? `${API_URL_RESTA}/${restaurante.id}`
+            : API_URL_RESTA
 
-    salvar() {
-        const aluno = this.state.aluno
-        const metodo = aluno.id ? "put" : "post"
-        const url = aluno.id ? `${API_URL_ALUNO}/${aluno.id}` : API_URL_ALUNO
-
-        axios[metodo](url, aluno)
+        axios[metodo](url, restaurante)
             .then((resp) => {
-                const lista = this.getListaAtualizada(resp.data)
-
-                this.setState({ aluno: initialState.aluno, lista })
-                sendSuccessPopUp(`Método ${metodo} efetuado com sucesso!`)
+                const restaurantes = getListaAtualizada(resp.data)
+                setRestaurante(initialState.restaurante)
+                setListaRestaurantes(restaurantes)
             })
             .catch((err) => {
                 console.dir(err)
-
-                sendMultipleErrorPopUp(err)
             })
     }
 
-    getListaAtualizada(aluno, add = true) {
-        const lista = this.state.lista.filter((a) => a.id !== aluno.id)
-        if (add) lista.unshift(aluno)
+    const getListaAtualizada = (restaurante, add = true) => {
+        const lista = listaRestaurantes.filter(
+            (a) => a.id !== restaurante.id
+        )
+        if (add) lista.unshift(restaurante)
         return lista
     }
 
-    atualizaCampo(event) {
+    const atualizaCampo = (event) => {
         //clonar usuário a partir do state, para não alterar o state diretamente
-        const aluno = { ...this.state.aluno }
+        const restaurante = { ...restaurante }
         //usar o atributo NAME do input identificar o campo a ser atualizado
-        aluno[event.target.name] = event.target.value
+        restaurante[event.target.name] = event.target.value
         //atualizar o state
-        this.setState({ aluno })
+        setRestaurante(restaurante)
     }
 
-    atualizaCurso(event) {
-        const aluno = { ...this.state.aluno }
-        aluno.codCurso = Number(event.target.value)
-        this.setState({ aluno })
+    const atualizaFilme = (event) => {
+        const filme = { ...filme }
+        restaurante.idFilme = Number(event.target.value)
+        setRestaurante(restaurante)
     }
 
-    carregar(aluno) {
-        this.setState({ aluno })
+    const carregar = (restaurante) => {
+        setRestaurante(restaurante)
     }
 
-    remover(aluno) {
-        const url = API_URL_ALUNO + "/" + aluno.id
-        if (!window.confirm("Confirma remoção do aluno: " + aluno.ra)) return
+    const remover = (restaurante) => {
+        const url = API_URL_RESTA + "/" + restaurante.id
+        if (!window.confirm("Confirma remoção do restaurante: " + restaurante.ra)) return
 
-        axios["delete"](url, aluno)
+        axios["delete"](url, restaurante)
             .then((_resp) => {
-                const lista = this.getListaAtualizada(aluno, false)
-                this.setState({ aluno: initialState.aluno, lista })
-                sendSuccessPopUp("Aluno removido com sucesso!")
+                const lista = getListaAtualizada(restaurante, false)
+                setRestaurante(initialState.restaurante)
+                setListaRestaurantes(lista)
             })
             .catch((err) => {
                 console.dir(err)
-
-                sendMultipleErrorPopUp(err)
             })
     }
 
-    renderForm() {
+    const renderForm = () => {
         return (
             <div className="inclui-container">
-                <label> RA: </label>
-                <input
-                    type="text"
-                    id="ra"
-                    placeholder="RA do aluno"
-                    className="form-input ra"
-                    name="ra"
-                    value={this.state.aluno.ra}
-                    onChange={(e) => this.atualizaCampo(e)}
-                />
                 <label> Nome: </label>
                 <input
                     type="text"
-                    id="nome"
+                    id="name"
                     placeholder="Nome do aluno"
                     className="form-input"
-                    name="nome"
-                    value={this.state.aluno.nome}
-                    onChange={(e) => this.atualizaCampo(e)}
+                    name="name"
+                    value={restaurante.nome}
+                    onChange={(e) => atualizaCampo(e)}
                 />
                 <label> Curso: </label>
-                <select name="codCurso" value={this.state.aluno.codCurso} onChange={e => { this.atualizaCurso(e) }} required>
-                    <option disabled={true} key="" value="">  -- Escolha uma opção -- </option>
-                    {this.state.listaCurso.map((curso) =>
-                        <option key={curso.id} name="codCurso" value={curso.codCurso}>
-                            {curso.codCurso} - {curso.nomeCurso} : {curso.periodo}
+                <select
+                    name="idFilme"
+                    value={restaurante.codFilme}
+                    onChange={(e) => {
+                        atualizaFilme(e)
+                    }}
+                    required
+                >
+                    <option disabled={true} key="" value="">
+                        {" "}
+                        -- Escolha uma opção --{" "}
+                    </option>
+                    {listaFilmes.map((filme) => (
+                        <option
+                            key={filme.idFilme}
+                            name="codCurso"
+                            value={filme.idFilme}
+                        >
+                            {filme.name} - {filme.ano}
                         </option>
-                    )}
+                    ))}
                 </select>
                 <br />
                 <button
                     className="btn btnSalvar"
-                    onClick={(e) => this.salvar(e)}
+                    onClick={(e) => salvar(e)}
                 >
                     Salvar
                 </button>
                 <button
                     className="btn btnCancelar"
-                    onClick={(e) => this.limpar(e)}
+                    onClick={(e) => limparForm(e)}
                 >
                     Cancelar
                 </button>
@@ -223,41 +164,47 @@ export default class CrudRestaurante extends Component {
         )
     }
 
-    let renderTable = () => {
+    const renderTable = () => {
         return (
             <div className="listagem">
                 <table className="listaAlunos styled-table" id="tblListaAlunos">
                     <thead>
                         <tr className="cabecTabela title">
-                            <th className="tabTituloRa">Ra</th>
                             <th className="tabTituloNome">Nome</th>
-                            <th className="tabTituloCurso">Curso</th>
+                            <th className="tabTituloFilme">Filme</th>
+                            <th className="tabTituloAvaliacao">Avaliacao</th>
                             <th className="tabTituloAcoes title">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {Array.isArray(this.state.lista) ? this.state.lista.map((aluno) => (
-                            <tr key={aluno.id}>
-                                <td>{aluno.ra}</td>
-                                <td>{aluno.nome}</td>
-                                <td>{aluno.codCurso}</td>
-                                <td className="td-buttons">
-                                    <button
-                                        className="btn btn-edit"
-                                        onClick={() => this.carregar(aluno)}
-                                    >
-                                        <BsFillPencilFill /> Alterar
-                                    </button>
+                        {Array.isArray(listaRestaurantes)
+                            ? listaRestaurantes.map((rest) => (
+                                <tr key={rest.id}>
+                                    <td>{rest.name}</td>
+                                    <td>{rest.avaliacao}</td>
+                                    <td>{rest.codFilme}</td>
+                                    <td className="td-buttons">
+                                        <button
+                                            className="btn btn-edit"
+                                            onClick={() =>
+                                                carregar(rest)
+                                            }
+                                        >
+                                            <BsFillPencilFill /> Alterar
+                                        </button>
 
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => this.remover(aluno)}
-                                    >
-                                        <BsFillTrash2Fill /> Excluir
-                                    </button>
-                                </td>
-                            </tr>
-                        )) : null}
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() =>
+                                                remover(rest)
+                                            }
+                                        >
+                                            <BsFillTrash2Fill /> Excluir
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))
+                            : null}
                     </tbody>
                 </table>
             </div>
@@ -266,21 +213,8 @@ export default class CrudRestaurante extends Component {
 
     return (
         <Main title={title}>
-            {this.renderForm()}
-            {this.renderTable()}
-            {/*
-            <ToastContainer
-                limit={5}
-                position="bottom-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />*/}
+            {renderForm()}
+            {renderTable()}
         </Main>
     )
 }

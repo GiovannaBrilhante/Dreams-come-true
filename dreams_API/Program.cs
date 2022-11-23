@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using dreams_API.Data; 
+using dreams_API.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -13,10 +13,10 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
 
 //Allow CORS
-builder.Services.AddCors(options => 
+builder.Services.AddCors(options =>
 {
     options.AddPolicy(MyAllowSpecificOrigins, builder => {
-        builder.WithOrigins("http://localhos").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+        builder.WithOrigins("http://localhost").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
         builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
         builder.SetIsOriginAllowed(origin => true);
     });
@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
 // Add services to the container.
 
 //Ading Authentication
-builder.Services.AddAuthentication(options => 
+builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -33,7 +33,7 @@ builder.Services.AddAuthentication(options =>
 })
 
 // Adding Jwt Bearer
-.AddJwtBearer(options => 
+.AddJwtBearer(options =>
 {
     options.SaveToken = true;
     options.RequireHttpsMetadata = false;

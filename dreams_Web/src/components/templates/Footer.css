@@ -1,3 +1,5 @@
+@import url("https://fontlibrary.org//face/waltograph-disney");
+
 footer.footer {
     background-color: var(--bg-menu);
     text-align: center;
@@ -11,8 +13,10 @@ footer.footer {
 
 footer span {
     vertical-align: top;
-    font-family: 'Lato', sans-serif;
+    font-family: 'WaltographRegular';
+    font-weight: normal;
+    font-style: normal;
     letter-spacing: 3px;
-    font-size:14px;
+    font-size:25px;
     color: #ffffff;
 }

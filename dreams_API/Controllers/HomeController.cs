@@ -24,7 +24,7 @@ namespace dreams_API.Controllers
                 _configuration = configuration;
                 _context = context;
             }
-        
+
         [HttpPost]
         [Route("login")]
         [AllowAnonymous]
@@ -40,6 +40,7 @@ namespace dreams_API.Controllers
                 new Claim(ClaimTypes.Role, usuario.cargo),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
+            // GetToken from authclaims
 
             var token = GetToken(authClaims);
             usuario.senha = "";
@@ -49,6 +50,20 @@ namespace dreams_API.Controllers
                 usuario = usuario
             });
         }
-        
+
+        private JwtSecurityToken GetToken(List<Claim> authClaims)
+        {
+            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["JWT:ValidIssuer"],
+                audience: _configuration["JWT:ValidAudience"],
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+                );
+
+            return token;
+        }
     }
 }
