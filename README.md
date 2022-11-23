@@ -18,11 +18,7 @@ ___
 Dreams come True é uma aplicação WEB react orientada a uma API em dotnet e banco de dados, que trabalha com restaurantes inspirados em filmes, o mesmo foi desenvolvido pela dupla Giovanna Brilhante e Gabriel Santana, durante a matéria de Desenvolvimento para Internet III, com orientações da professora Patrícia no Colégio Técnico de Campinas - Unicamp.
 
 ## 📃 Descrição
-<<<<<<< HEAD
-Em nossa aplicação esses restaurantes podem ser baseados, em series ou mesmo filmes, sejam eles da disney ou de outras companhias, assim, podendo fazer o crud com esses restaurantes e os exibindo, também seu rating, filme inspirado e descrições. O projeto tem como objetivo obter aprovação no projeto final da professora Patrícia, além de treinarmos conhecimentos de login, roles, data annotations, api, crud, react, json, design, css e outras frameworks/ferramentas.
-=======
-Em nossa aplicação esses restaurantes são inspirados em series ou mesmo filmes, sejam eles da disney ou de outras companhias, assim, podendo fazer o crud com esses restaurantes e os exibindo, também seu rating, filme inspirado e descrições. O projeto tem como objetivo obter aprovação no projeto final da professora Patrícia, além de treinarmos conhecimentos de login, roles, data annotations, api, crud, react, json, design, css e outras frameworks/ferramentas. 
->>>>>>> 2f4b8e72889ca78e44c701e91c6b0582d8c5421d
+Em nossa aplicação esses restaurantes são inspirados em series ou mesmo filmes, sejam eles da disney ou de outras companhias, assim, podendo fazer o crud com esses restaurantes e os exibindo, também seu rating, filme inspirado e descrições. O projeto tem como objetivo obter aprovação no projeto final da professora Patrícia, além de treinarmos conhecimentos de login, roles, data annotations, api, crud, react, json, design, css e outras frameworks/ferramentas.
 
 ## 🖋️ Contribuindo
 
