@@ -5,6 +5,7 @@ import NotFound from "./components/NotFound/NotFound"
 import CrudFilme from "./components/CrudFilme/CrudFilme"
 import CrudCarometro from "./components/CrudCarometro/CrudCarometro"
 import Home from "./components/Home/body/Home"
+import CrudUsuario from "./components/CrudUsuario/CrudUsuario"
 
 export default function Rotas() {
     return (
@@ -13,6 +14,7 @@ export default function Rotas() {
             <Route path='/restaurantes' element={<CrudRestaurante/>} />
             <Route path="/filmes" element={<CrudFilme/>} />
             <Route path="/carometro" element={<CrudCarometro/>} />
+            <Route path="/usuarios" element={<CrudUsuario/>} />
 
             <Route /*Not found page*/ path='*' element={<NotFound/>} />
         </Routes>
