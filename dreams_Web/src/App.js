@@ -1,10 +1,10 @@
 import "./App.css"
 
+import Rotas from "./Rotas"
 import Logo from "./components/templates/Logo"
 import Menu from "./components/templates/Menu"
 import Footer from "./components/templates/Footer"
 
-import Rotas from "./Rotas"
 import { BrowserRouter } from "react-router-dom"
 
 function App() {
