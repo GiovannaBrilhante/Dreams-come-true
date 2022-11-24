@@ -17,6 +17,15 @@ export default function Menu(_props) {
             <Link to="/usuarios">
                 Usuários
             </Link>
+            {currentUser ? (
+                <Link to="/logout">
+                    logout
+                </Link>
+            ) : (
+                <Link to="/login">
+                    Login
+                </Link>
+            )}
         </nav>
     )
 }

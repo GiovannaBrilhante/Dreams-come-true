@@ -25,7 +25,9 @@ export default class CrudUsuario extends Component {
 
     salvar(){
         const usuario = this.state.usuario
-        const metodo = "post"
+        const metodo = usuario.id ? "put" : "post"
+        const url = usuario.id ? `${urlAPI}/${usuario.id}` : urlAPI
+
 
         axios[metodo] (urlAPI, usuario).then(resp => {
             const lista = this.getListaAtualizada(resp.data)
@@ -33,15 +35,17 @@ export default class CrudUsuario extends Component {
         })
     }
 
-    getListaAtualizada(usuario) {
+    getListaAtualizada(usuario, add = true) {
         const lista = this.state.lista.filter(a => a.id !== usuario.id)
-        lista.unshift(usuario)
+        if(add) lista.unshift(usuario)
         return lista
     }
 
     atualizaCampo(event){
         //clonar usuario a partit do state para não alterar o state diretamente
         const usuario = {...this.state.usuario}
+        //usar o atributo NAME do input identificar o campo a ser atualizado
+        usuario[event.target.name] = event.target.value
         //atualizar o state
         this.setState({ usuario})
     }

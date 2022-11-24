@@ -6,7 +6,7 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:import/errors",
+        "plugin:import/warning",
         "plugin:react/recommended"
     ],
     "parserOptions": {
@@ -42,11 +42,11 @@
             }
         ],
         "semi": [
-            "error",
+            "warning",
             "never"
         ],
         "quotes": [
-            "error",
+            "warning",
             "double"
         ],
         "allowTemplateLiterals": 0,
