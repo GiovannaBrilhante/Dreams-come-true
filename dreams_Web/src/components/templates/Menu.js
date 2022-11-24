@@ -14,6 +14,9 @@ export default function Menu(_props) {
             <Link to="/carometro">
                 Carômetro
             </Link>
+            <Link to="/usuarios">
+                Usuários
+            </Link>
         </nav>
     )
 }

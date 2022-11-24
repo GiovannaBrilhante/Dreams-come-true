@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabri\\VSCode\\GitHub\\Dreams-come-true\\dreams_API\\dreams_API.csproj": {}
+    "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabri\\VSCode\\GitHub\\Dreams-come-true\\dreams_API\\dreams_API.csproj": {
+    "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabri\\VSCode\\GitHub\\Dreams-come-true\\dreams_API\\dreams_API.csproj",
+        "projectUniqueName": "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj",
         "projectName": "dreams_API",
-        "projectPath": "C:\\Users\\Gabri\\VSCode\\GitHub\\Dreams-come-true\\dreams_API\\dreams_API.csproj",
-        "packagesPath": "C:\\Users\\Gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabri\\VSCode\\GitHub\\Dreams-come-true\\dreams_API\\obj\\",
+        "projectPath": "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
