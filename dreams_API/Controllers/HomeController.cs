@@ -12,18 +12,16 @@ namespace dreams_API.Controllers
 {
     [ApiController]
     [Route("/")]
-    public class HomeController: ControllerBase
+    public class HomeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
         private readonly DreamsContext? _context;
 
-        public HomeController(
-            IConfiguration configuration,
-            DreamsContext context)
-            {
-                _configuration = configuration;
-                _context = context;
-            }
+        public HomeController(IConfiguration configuration, DreamsContext context)
+        {
+            _configuration = configuration;
+            _context = context;
+        }
 
         [HttpPost]
         [Route("login")]
@@ -31,11 +29,14 @@ namespace dreams_API.Controllers
         public ActionResult<dynamic> Login([FromBody] Usuario usuario)
         {
             //verifica se existe usuario a ser excluido
-            var user = _context.Usuario.Where(u => u.username == usuario.username && u.senha == usuario.senha).FirstOrDefault();
-            if(usuario == null)
+            var user = _context.Usuario
+                .Where(u => u.username == usuario.username && u.senha == usuario.senha)
+                .FirstOrDefault();
+            if (usuario == null)
                 return Unauthorized("Usuário ou senha invalida");
 
-            var authClaims = new List<Claim> {
+            var authClaims = new List<Claim>
+            {
                 new Claim(ClaimTypes.Name, usuario.username),
                 new Claim(ClaimTypes.Role, usuario.cargo),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
@@ -45,23 +46,27 @@ namespace dreams_API.Controllers
             var token = GetToken(authClaims);
             usuario.senha = "";
 
-            return Ok(new{
-                token = new JwtSecurityTokenHandler().WriteToken(token),
-                usuario = usuario
-            });
+            return Ok(
+                new { token = new JwtSecurityTokenHandler().WriteToken(token), usuario = usuario }
+            );
         }
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
-            var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["JWT:Secret"]));
+            var authSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(_configuration["JWT:Secret"])
+            );
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
                 expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
-                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
-                );
+                signingCredentials: new SigningCredentials(
+                    authSigningKey,
+                    SecurityAlgorithms.HmacSha256
+                )
+            );
 
             return token;
         }

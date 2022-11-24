@@ -14,6 +14,14 @@ export default function Menu(_props) {
             <Link to="/carometro">
                 Carômetro
             </Link>
+
+            <Link to="/login">
+                Registrar-se
+            </Link>
+
+            <Link to="/carometro">
+                Entrar
+            </Link>
         </nav>
     )
 }

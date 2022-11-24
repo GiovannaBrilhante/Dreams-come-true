@@ -47,9 +47,8 @@ export default function CrudRestaurante() {
             })*/
     })
 
-    const limparForm = () => {
-        setRestaurante(initialState.restaurante)
-    }
+    const limparForm = () => setRestaurante(initialState.restaurante)
+
 
     const salvar = () => {
         const restaurante = restaurante
@@ -134,13 +133,12 @@ export default function CrudRestaurante() {
                     required
                 >
                     <option disabled={true} key="" value="">
-                        {" "}
-                        -- Escolha uma opção --{" "}
+                        {" "} -- Escolha uma opção -- {" "}
                     </option>
                     {listaFilmes.map((filme) => (
                         <option
                             key={filme.idFilme}
-                            name="codCurso"
+                            name="idFilme"
                             value={filme.idFilme}
                         >
                             {filme.name} - {filme.ano}
