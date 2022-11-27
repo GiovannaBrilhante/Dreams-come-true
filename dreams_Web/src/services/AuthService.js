@@ -9,9 +9,8 @@ const login = (username, senha) => {
     })
         .then((response) => {
             console.log("response: " + JSON.stringify(response.data.token))
-            if( response.data.token) {
+            if (response.data.token) 
                 localStorage.setItem("user", JSON.stringify(response.data))
-            }
             return response.data
         })
 }

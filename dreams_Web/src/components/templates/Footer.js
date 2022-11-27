@@ -5,7 +5,7 @@ export default function Footer(_props) {
         <footer className="footer">
             <span> <strong> Dreams Come True</strong> </span>
             <br/>
-            <span> by Giovanna Brilhante & Gabriel Silva  </span>
+            <span> by Giovanna Brilhante & Gabriel Silva 💖</span>
         </footer>
     )
 }0

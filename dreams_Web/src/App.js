@@ -6,6 +6,7 @@ import Menu from "./components/templates/Menu"
 import Footer from "./components/templates/Footer"
 
 import { BrowserRouter } from "react-router-dom"
+import FloatingBtn from "./components/FloatingButton/FloatingButton"
 
 function App() {
     return (
@@ -15,6 +16,7 @@ function App() {
                 <Menu />
                 <Rotas />
                 <Footer />
+                <FloatingBtn />
             </div>
         </BrowserRouter>
     )

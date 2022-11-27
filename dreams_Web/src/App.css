@@ -1,14 +1,39 @@
+@import url("https://fonts.googleapis.com/css?family=Varela+Round%22");
+@import url("https://fontlibrary.org//face/waltograph-disney");
+@import url('https://fonts.cdnfonts.com/css/poppins');
+
 :root {
     --bg-menu: #191622;
+    --bg-primary: 	#111111;
     --logo-width: 150px;
-    --content-header-height: 60px;
+    --content-header-height: 6.5%
+        /* 60px*/
+    ;
     --content-footer-height: 40px;
 }
 
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
 body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--bg-primary);
+    background: linear-gradient(#2b1055, #7597de);
     box-sizing: border-box;
     font-family: "Pacifico", sans-serif;
-    background-color: #f5f5f5;
+}
+
+.cursor{
+    cursor: url('./assets/images/bg_stars.png'), auto;
 }
 
 /* Lay-out */
@@ -16,15 +41,31 @@ body {
     margin: 0px;
     display: grid;
     grid-template-columns: var(--logo-width) 1fr;
-    grid-template-rows: var(--content-header-height) 1fr var(
-            --content-footer-height
-        );
+    grid-template-rows: var(--content-header-height) 1fr var(--content-footer-height);
     grid-template-areas:
         "logo menu"
         "content content"
         "footer footer";
     height: 100vh;
     background-color: #f5f5f5;
+}
+
+/* Scroolbar */
+::-webkit-scrollbar {
+    width: 0.7vw;
+}
+
+/* TO STYLE THE SCROLLBAR TRACK */
+::-webkit-scrollbar-track {
+    background-color: #000000;
+    /* THIS WILL SET THE COLOR OF THE SCROLLBAR TRACK */
+}
+
+/* TO STYLE THE SCROLLBAR THUMB */
+::-webkit-scrollbar-thumb {
+    background-color: #4d37a0;
+    border: 0.25vw solid #000000;
+    border-radius: 1vw;
 }
 
 aside.logo {

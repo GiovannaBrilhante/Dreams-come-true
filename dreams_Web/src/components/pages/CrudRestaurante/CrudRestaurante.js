@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import "./CrudRestaurante.css"
-import Main from "../templates/Main"
+import Main from "../../templates/Main"
 import axios from "axios"
 
 import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"

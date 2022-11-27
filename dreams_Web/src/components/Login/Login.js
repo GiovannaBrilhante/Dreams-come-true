@@ -10,9 +10,9 @@ export default function Login() {
     const [message, setMessage] = useState("")
     const navigate = useNavigate()
 
-    async function handleSubimit(evento) {
+    async function handleSubmit(evento) {
         evento.preventDefault()
-        const userForm = { username, password}
+        const userForm = { username, password }
 
         if (!username || !password) {
             setMessage("Preencha o username e a senha para continuar!")
@@ -24,7 +24,7 @@ export default function Login() {
                     window.location.reload()
                 },
                 (error) => {
-                    const resMessage  = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+                    const resMessage = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
                     setMessage(resMessage)
                 }
             )
@@ -41,7 +41,7 @@ export default function Login() {
                         value={username}
                         placeholder="Digite o e-mail"
                         className="inputAuth"
-                        onChange={({target}) => {setUsername(target.value); setMessage("")}}
+                        onChange={({ target }) => { setUsername(target.value); setMessage("") }}
                     />
                 </div>
                 <div>
@@ -51,7 +51,7 @@ export default function Login() {
                         value={password}
                         placeholder="Digite a senha"
                         className="inputAuth"
-                        onChange={({target}) => {setPassword(target.value); setMessage("")}}
+                        onChange={({ target }) => { setPassword(target.value); setMessage("") }}
                     />
                 </div>
                 <button type="submit"> Login </button>

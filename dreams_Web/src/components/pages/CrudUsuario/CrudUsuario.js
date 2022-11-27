@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import axios from "axios"
 import "./CrudUsuario.css"
-import Main from "../templates/Main"
+import Main from "../../templates/Main"
 
 const title = "Cadastro de Usuários"
 const urlAPI = "https://localhost:7037/api/usuario" 
@@ -26,8 +26,6 @@ export default class CrudUsuario extends Component {
     salvar(){
         const usuario = this.state.usuario
         const metodo = usuario.id ? "put" : "post"
-        const url = usuario.id ? `${urlAPI}/${usuario.id}` : urlAPI
-
 
         axios[metodo] (urlAPI, usuario).then(resp => {
             const lista = this.getListaAtualizada(resp.data)

@@ -1,31 +1,40 @@
 import "./Menu.css"
-import React from "react"
-import { Link } from "react-router-dom"
+import React, { useState } from "react"
+import { NavLink } from "react-router-dom"
 
-export default function Menu(_props) {
+export default function Menu(props) {
+    const [currentUser, setCurrentUser] = useState(undefined)
+
     return (
         <nav className='menu'>
-            <Link to="/restaurantes">
+            <NavLink to="/" activeClassName="active">
+                Home
+            </NavLink>
+
+            <NavLink to="/restaurantes" activeClassName="active">
                 Restaurantes
-            </Link>
-            <Link to="/filmes">
+            </NavLink>
+
+            <NavLink to="/filmes" activeClassName="active">
                 Filmes
-            </Link>
-            <Link to="/carometro">
+            </NavLink>
+            <NavLink to="/carometro" activeClassName="active">
                 Carômetro
-            </Link>
-            <Link to="/usuarios">
+            </NavLink>
+            <NavLink to="/usuarios" activeClassName="active">
                 Usuários
-            </Link>
-            {currentUser ? (
-                <Link to="/logout">
-                    logout
-                </Link>
-            ) : (
-                <Link to="/login">
-                    Login
-                </Link>
-            )}
+            </NavLink>
+            <div className="enterMethod">
+                {currentUser ? (
+                    <NavLink to="/logout" activeClassName="active">
+                        logout
+                    </NavLink>
+                ) : (
+                    <NavLink to="/login" activeClassName="active">
+                        Login
+                    </NavLink>
+                )}
+            </div>
         </nav>
     )
 }

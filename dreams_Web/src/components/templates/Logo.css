@@ -5,6 +5,8 @@ aside.logo {
 
 aside.logo img {
     width: 100%;
+    height: auto;
+    
     padding: 0 auto;
     padding-top: 5px;
     padding-left: 15px;
