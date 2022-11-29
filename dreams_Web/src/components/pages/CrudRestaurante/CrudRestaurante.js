@@ -27,8 +27,6 @@ export default function CrudRestaurante() {
         initialState.listaRestaurantes
     )
     const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
-    setListaFilmes(initialState.listaFilmes)
-
 
     useEffect(() => {/*
         axios(API_URL_RESTA)

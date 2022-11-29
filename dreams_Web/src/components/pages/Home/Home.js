@@ -10,12 +10,12 @@ export default class Home extends Component {
                 <div className="container">
                     <div className="contentBox">
                         <div>
-                            <h1>Dreams Come True</h1>
-                            <p>
+                            <h1 className="an-expansion an-inf-expansion">Dreams Come True</h1>
+                            <p className="an-fadeIn">
                                 Seja bem vindo ao Dreams Come True, o seu website de sonhos. Aqui você pode registrar seus sonhos e compartilhar com seus amigos.
                             </p>
                             <Link to="/restaurantes">
-                                <a className="btnD1">Conheça os Restaurantes</a>
+                                <a className="btnD1 an-fadeIn-btn">Conheça os Restaurantes</a>
                             </Link>
                         </div>
                     </div>
@@ -35,7 +35,7 @@ export default class Home extends Component {
     render() {
         return (
             <>
-                <main className="principal">
+                <main className="principal dark">
                     {this.renderBanner()}
 
 
