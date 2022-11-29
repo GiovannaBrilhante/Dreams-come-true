@@ -21,3 +21,8 @@ main>div {
 main.dark>div {
     background-color: #121214;
 }
+
+
+.header h2 {
+    color: aliceblue;
+}

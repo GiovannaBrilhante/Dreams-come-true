@@ -5,7 +5,7 @@ import UserService from "../../../services/UserService"
 
 const title = "Cadastro de filmes"
 
-export default function CrudFilme(props) {
+export default function CrudFilme() {
     const [lista, setLista] = useState([])
     const [mens, setMens] = useState(null)
 

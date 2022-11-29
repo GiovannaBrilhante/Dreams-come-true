@@ -28,7 +28,7 @@ export default function CrudRestaurante() {
     )
     const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
 
-    useEffect(() => {/*
+    useEffect(() => {
         axios(API_URL_RESTA)
             .then((resp) => {
                 setListaRestaurantes(resp.data)
@@ -42,7 +42,7 @@ export default function CrudRestaurante() {
             })
             .catch((err) => {
                 console.dir(err)
-            })*/
+            })
     })
 
     const limparForm = () => setRestaurante(initialState.restaurante)

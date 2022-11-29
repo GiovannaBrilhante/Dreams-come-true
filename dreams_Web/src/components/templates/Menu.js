@@ -9,9 +9,8 @@ export default function Menu(props) {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser()
-        if (user) {
+        if (user) 
             setCurrentUser(user)
-        }
     }, [])
 
     return (
@@ -19,11 +18,9 @@ export default function Menu(props) {
             <NavLink to="/" activeClassName="active">
                 Home
             </NavLink>
-
             <NavLink to="/restaurantes" activeClassName="active">
                 Restaurantes
             </NavLink>
-
             <NavLink to="/filmes" activeClassName="active">
                 Filmes
             </NavLink>

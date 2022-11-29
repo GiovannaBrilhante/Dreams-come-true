@@ -42,6 +42,7 @@ p.esconder {
     width: 100%;
 
     padding-top: 100px;
+    
 }
 
 /* Conteudo Principal */
@@ -271,7 +272,7 @@ p.esconder {
 
 .section-developers {
     padding-top: 140px;
-    padding-bottom: 100px;
+    padding-bottom: 200px;
 }
 
 .container-web-1216 {
@@ -307,7 +308,7 @@ p.esconder {
     -ms-grid-columns: 1fr 1fr;
     grid-template-columns: 300px 300px;
     -ms-grid-rows: auto;
-    grid-template-rows: auto;
+    grid-template-rows: 422px;
 }
 
 .dev-card {
@@ -458,8 +459,8 @@ folha de estilo do user agent p {
 
 /* Cards */
 ::selection {
-    color: rgb(255, 238, 0);
-    background: rgb(255, 148, 148);
+    color: rgb(0, 145, 255);
+    background: rgb(255, 255, 255);
 }
 
 .wrapper {
@@ -468,7 +469,6 @@ folha de estilo do user agent p {
     perspective: 1000px;
     height: 100%;
 }
-
 
 
 .wrapper:hover>.back-face {
@@ -535,10 +535,6 @@ folha de estilo do user agent p {
     background-color: red;
 }
 
-
-
-
-
-a.link{
+a.link-github{
     text-decoration: none;
 }

@@ -39,29 +39,6 @@ export default class Home extends Component {
                         <div role="list" className="lista-dev w-dyn-items">
                             <div role="listitem" className="dev-card w-dyn-item">
                                 <div className="wrapper">
-
-                                    <div className="div-imagem-avatar">
-                                        <div className="avatar-cover">
-                                            <img alt="" loading="lazy" src={dev_gi} sizes="100vw" className="avatar" />
-                                        </div>
-                                        <img src="https://global-uploads.webflow.com/61d83a2ebb0ae01ab96e841a/6380c3e02a3378ffbeb10627_faixa-speackers.svg" loading="lazy" alt="" />
-                                    </div>
-                                    <a className="link" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
-                                        <div className="dev-infos">
-                                            <div className="dev-tag">
-                                                <p className="p-14 dev-cargo">Dona</p>
-                                            </div>
-                                            <h3 className="healine-18 dev-name">Giovanna Brilhante</h3>
-                                            <p className="p-14 dev-about">CTO (Chief Technology Officer) <br /><strong>Dreams Lover</strong></p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-
-
-                            { /*
-                                                        <div role="listitem" className="dev-card w-dyn-item">
-                                <div className="wrapper">
                                     <div className="card front-face">
                                         <div className="div-imagem-avatar">
                                             <div className="avatar-cover">
@@ -69,7 +46,7 @@ export default class Home extends Component {
                                             </div>
                                             <img src="https://global-uploads.webflow.com/61d83a2ebb0ae01ab96e841a/6380c3e02a3378ffbeb10627_faixa-speackers.svg" loading="lazy" alt="" />
                                         </div>
-                                        <a className="link" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
+                                        <a className="link-github" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
                                             <div className="dev-infos">
                                                 <div className="dev-tag">
                                                     <p className="p-14 dev-cargo">Dona</p>
@@ -83,11 +60,11 @@ export default class Home extends Component {
                                     <div id="container" className="card back-face">
                                         <div className="info">
                                             <div className="dev-infos">
-                                                <a className="link" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
+                                                <a className="link-github" href="https://github.com/GiovannaBrilhante" target="_blank" rel="noreferrer">
                                                     <div className="dev-tag-site">
                                                         <p className="p-14 dev-site">GITHUB</p>
                                                     </div>
-                                                    <h3 className="healine-18 dev-name">PuniGC</h3>
+                                                    <h3 className="healine-18 dev-name">GiovannaBrilhante</h3>
                                                     <BsGithub />
                                                 </a>
                                             </div>
@@ -95,12 +72,6 @@ export default class Home extends Component {
                                     </div>
                                 </div>
                             </div>
-*/
-
-
-                            }
-
-
 
                             <div role="listitem" className="dev-card w-dyn-item">
                                 <div className="wrapper">
@@ -111,7 +82,7 @@ export default class Home extends Component {
                                             </div>
                                             <img src="https://global-uploads.webflow.com/61d83a2ebb0ae01ab96e841a/6380c3e02a3378ffbeb10627_faixa-speackers.svg" loading="lazy" alt="" />
                                         </div>
-                                        <a className="link" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
+                                        <a className="link-github" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
                                             <div className="dev-infos">
 
                                                 <div className="dev-tag">
@@ -126,7 +97,7 @@ export default class Home extends Component {
                                     <div id="container" className="card back-face">
                                         <div className="info">
                                             <div className="dev-infos">
-                                                <a className="link" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
+                                                <a className="link-github" href="https://github.com/PuniGC" target="_blank" rel="noreferrer">
                                                     <div className="dev-tag-site">
                                                         <p className="p-14 dev-site">GITHUB</p>
                                                     </div>
@@ -152,10 +123,6 @@ export default class Home extends Component {
                 <main className="principal dark">
                     {this.renderBanner()}
                     {this.renderDevelopers()}
-
-                    <div>
-
-                    </div>
                 </main>
             </>
         )
