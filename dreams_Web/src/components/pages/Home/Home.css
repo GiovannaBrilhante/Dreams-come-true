@@ -443,10 +443,33 @@ folha de estilo do user agent p {
 
 
 /* Cards */
-/*
 ::selection {
-    color: rgb(255, 255, 255);
-    background: rgb(148, 168, 255);
+    color: rgb(255, 238, 0);
+    background: rgb(255, 148, 148);
+}
+
+.wrapper {
+    height: 400px;
+    width: 320px;
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    margin: 10px;
+}
+
+.wrapper .card {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 5px;
+    background: #fff;
+    border-radius: 10px;
+    transform: translateY(0deg);
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+
 }
 
 .wrapper:hover>.front-face {
@@ -458,6 +481,7 @@ folha de estilo do user agent p {
     width: 100%;
     object-fit: cover;
     border-radius: 10px;
+
 }
 
 .wrapper .back-face {
@@ -512,4 +536,4 @@ folha de estilo do user agent p {
     color: rgb(8, 22, 49);
     border-color: rgb(148, 168, 255);
     background: linear-gradient(375deg, transparent, transparent);
-}*/
+}
