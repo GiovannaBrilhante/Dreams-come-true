@@ -15,7 +15,7 @@ body {
 
 
 
-p {
+p.esconder {
     opacity: 0;
     font-size: 1.15rem;
 }
@@ -161,7 +161,7 @@ p {
 
 
 /* CSS */
-.btnD1 { 
+.btnD1 {
     align-items: center;
     appearance: none;
     background-color: #FCFCFD;
@@ -247,19 +247,269 @@ p {
 
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
-.an-fadeIn{
+.an-fadeIn {
     animation: fadeIn 3s;
     animation-delay: 1s;
     animation-fill-mode: forwards;
 }
 
-.an-fadeIn-btn{
+.an-fadeIn-btn {
     opacity: 0;
     animation: fadeIn 3s;
     animation-delay: 2s;
     animation-fill-mode: forwards;
 }
+
+.section-developers {
+    padding-top: 140px;
+    padding-bottom: 100px;
+}
+
+.container-web-1216 {
+    max-width: 1216px;
+    padding-right: 24px;
+    padding-left: 24px;
+}
+
+.w-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 940px;
+}
+
+.header-devs {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: Roboto, sans-serif;
+    color: #e1e1e6;
+    font-size: 40px;
+    line-height: 130%;
+}
+
+.devs-colletions {
+    margin-top: 60px;
+}
+
+.lista-dev {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-column-gap: 80px;
+    grid-row-gap: 80px;
+    -ms-grid-columns: 1fr 1fr;
+    grid-template-columns: 300px 300px;
+    -ms-grid-rows: auto;
+    grid-template-rows: auto;
+}
+
+.dev-card {
+    border: 1px solid #202024;
+    background-color: #09090a;
+}
+
+
+.div-imagem-avatar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    overflow: hidden;
+    -o-object-fit: fill;
+    object-fit: fill;
+}
+
+.avatar {
+    height: 300px;
+    object-fit: cover;
+
+}
+
+.dev-infos {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin: 16px 8px 16px 16px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: start;
+    -webkit-align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.dev-tag {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 4px 8px;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    background-color: #ffcd1e;
+}
+
+.p-14.dev-cargo {
+    margin-bottom: 0;
+    color: #121214;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.p-14 {
+    font-family: Roboto, sans-serif;
+    color: #c4c4cc;
+    font-weight: 400;
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.healine-18.dev-name {
+    margin-top: 8px;
+    margin-bottom: 0;
+    color: #e1e1e6;
+    text-align: left;
+}
+
+.healine-18 {
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 30px;
+    margin-top: 20px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.p-14 {
+    font-family: Roboto, sans-serif;
+    color: #c4c4cc;
+    font-weight: 400;
+}
+
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+folha de estilo do user agent p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.p-14.dev-about {
+    margin-bottom: 0;
+    color: #8d8d99;
+    text-align: left;
+}
+
+
+
+/* Cards */
+/*
+::selection {
+    color: rgb(255, 255, 255);
+    background: rgb(148, 168, 255);
+}
+
+.wrapper:hover>.front-face {
+    transform: rotateY(-180deg);
+}
+
+.wrapper .card img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.wrapper .back-face {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    transform: rotateY(180deg);
+}
+
+.wrapper:hover>.back-face {
+    transform: rotateY(0deg);
+}
+
+.wrapper .back-face img {
+    height: 150px;
+    width: 150px;
+    padding: 5px;
+    border-radius: 50%;
+    background: linear-gradient(375deg, rgb(8, 22, 49), rgb(148, 168, 255));
+}
+
+.wrapper .back-face .info {
+    text-align: center;
+}
+
+.back-face .info .title {
+    font-family: "Maven Pro", sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.back-face ul {
+    display: flex;
+}
+
+.back-face ul a {
+    display: block;
+    height: 40px;
+    width: 40px;
+    color: #fff;
+    text-align: center;
+    margin: 0 5px;
+    line-height: 38px;
+
+    border-radius: 50%;
+    background: linear-gradient(375deg, rgb(8, 22, 49), rgb(148, 168, 255));
+    transition: all 0.5s ease;
+}
+
+.back-face ul a:hover {
+    color: rgb(8, 22, 49);
+    border-color: rgb(148, 168, 255);
+    background: linear-gradient(375deg, transparent, transparent);
+}*/
