@@ -4,10 +4,10 @@
 
 :root {
     --bg-menu: #191622;
-    --bg-primary: 	#111111;
+    --bg-primary: #10101a;
     --logo-width: 150px;
     --content-header-height: 6.5%
-        /* 60px*/
+        /* 6.5%60px*/
     ;
     --content-footer-height: 40px;
 }
@@ -32,22 +32,30 @@ body {
     font-family: "Pacifico", sans-serif;
 }
 
-.cursor{
-    cursor: url('./assets/images/bg_stars.png'), auto;
-}
-
 /* Lay-out */
 .App {
     margin: 0px;
     display: grid;
     grid-template-columns: var(--logo-width) 1fr;
-    grid-template-rows: var(--content-header-height) 1fr var(--content-footer-height);
+    grid-template-rows:  var(--content-header-height) 1fr var(--content-footer-height);
     grid-template-areas:
-        "logo menu"
+        "header header"
         "content content"
         "footer footer";
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: var(--bg-primary) /*#f5f5f5*/;
+}
+
+header {
+    grid-area: header;
+}
+
+div.content {
+    grid-area: content;
+}
+
+footer.footer {
+    grid-area: footer;
 }
 
 /* Scroolbar */
@@ -68,18 +76,3 @@ body {
     border-radius: 1vw;
 }
 
-aside.logo {
-    grid-area: logo;
-}
-
-nav.menu {
-    grid-area: menu;
-}
-
-div.content {
-    grid-area: content;
-}
-
-footer.footer {
-    grid-area: footer;
-}

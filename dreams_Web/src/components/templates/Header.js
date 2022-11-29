@@ -1,7 +1,11 @@
-export default function Header(props) {
+import Logo from "./Logo"
+import Menu from "./Menu"
+
+export default function Header(_props) {
     return (
-        <header className="header">
-            <h2>{props.title}</h2>
+        <header>
+            <Logo />
+            <Menu />
         </header>
     )
 }

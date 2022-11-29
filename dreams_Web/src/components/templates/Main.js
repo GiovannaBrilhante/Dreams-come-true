@@ -1,11 +1,12 @@
 import "./Main.css"
 import React from "react"
-import Header from "./Header"    
 
 export default function Main(props) {
     return (
         <div className="content">
-            <Header {...props} />
+            <div className="header">
+                <h2>{props.title}</h2>
+            </div>
             <main>
                 <div>
                     {props.children}

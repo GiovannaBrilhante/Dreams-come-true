@@ -1,13 +1,16 @@
 aside.logo {
     background-color: var(--bg-menu);
-    text-align:center;
+    text-align: center;
+    float: left;
+    
+    width: var(--logo-width);
+    height: 100%;
 }
 
 aside.logo img {
     width: 100%;
     height: auto;
-    
-    padding: 0 auto;
-    padding-top: 5px;
-    padding-left: 15px;
+    padding: 5px 0 0 15px;
+    /*padding-top: 5px;
+    padding-left: 15px;*/
 }
