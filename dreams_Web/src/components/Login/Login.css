@@ -18,6 +18,12 @@
     display: inline-block;
 }
 
+.inputAuth1 {
+    padding: 12px;
+    margin: 8px 0;
+    width: 10000px;
+}
+
 .inputAuth {
     padding: 12px;
     margin: 8px 0;
