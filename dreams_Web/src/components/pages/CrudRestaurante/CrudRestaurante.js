@@ -5,10 +5,10 @@ import axios from "axios"
 
 import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 
-const title = "Cadastro de Alunos"
+const title = "Cadastro de restaurantes"
 
 const API_URL_RESTA = "http://localhost:5147/api/restaurante"
-//const API_URL_FILME = "http://localhost:5147/api/filme"
+const API_URL_FILME = "http://localhost:5147/api/filme"
 const initialState = {
     restaurante: { id: 0, name: "", avaliacao: 5, codFilme: 0 },
     filme: { id: 0, name: "", avaliacao: 5, ano: 0, categoria: "" },

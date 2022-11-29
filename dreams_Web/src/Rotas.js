@@ -36,8 +36,15 @@ export default function Rotas() {
                         </Main>} />
             )}
 
+            {currentUser ? (<Route path="/restaurantes" element={<CrudRestaurante />} />) : (
+                <Route exact path='/restaurantes'
+                    element={
+                        <Main title="Cadastro de restaurantes">
+                            <div>Não autorizado! </div>
+                        </Main>} />
+            )}
+
             <Route path="/carometro" element={<CrudCarometro />} />
-            <Route path='/restaurantes' element={<CrudRestaurante />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="*" to='/' />

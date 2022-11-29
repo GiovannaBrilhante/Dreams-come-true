@@ -17,5 +17,7 @@ namespace dreams_API.Data
             options.UseSqlServer(Configuration.GetConnectionString("StringConexaoSQLServer"));
         }
         public DbSet<Usuario>? Usuario{get; set;}
+
+        public DbSet<Filmes>? Filmes{get; set;}
     }
 }
