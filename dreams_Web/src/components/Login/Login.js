@@ -40,7 +40,7 @@ export default function Login() {
                         type='text'
                         value={username}
                         placeholder="Digite o e-mail"
-                        className="inputAuth"
+                        className="inputAuth1"
                         onChange={({ target }) => { setUsername(target.value); setMessage("") }}
                     />
                 </div>
