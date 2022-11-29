@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import "./Home.css"
 import { Link } from "react-router-dom"
 import dev_gi from "../../../assets/images/dev_gi.png"
-import dev_ga from "../../../assets/images/dev_ga.png"
+import dev_ga from "../../../assets/images/dev_ga.jpeg"
 
 
 export default class Home extends Component {

@@ -1,9 +1,18 @@
 import "./Menu.css"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
+
+import AuthService from '../../services/AuthService'
 
 export default function Menu(props) {
     const [currentUser, setCurrentUser] = useState(undefined)
+
+    useEffect(() => {
+        const user = AuthService.getCurrentUser()
+        if (user) {
+            setCurrentUser(user)
+        }
+    }, [])
 
     return (
         <nav className='menu'>

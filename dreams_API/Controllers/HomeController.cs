@@ -11,7 +11,7 @@ using dreams_API.Models;
 namespace dreams_API.Controllers
 {
     [ApiController]
-    [Route("/")]
+    [Route("api/[controller]")]
     public class HomeController : ControllerBase
     {
         private readonly IConfiguration _configuration;
@@ -28,28 +28,43 @@ namespace dreams_API.Controllers
         [AllowAnonymous]
         public ActionResult<dynamic> Login([FromBody] Usuario usuario)
         {
-            //verifica se existe usuario a ser excluido
+            //verifica se existe aluno a ser excluído
             var user = _context.Usuario
                 .Where(u => u.username == usuario.username && u.senha == usuario.senha)
                 .FirstOrDefault();
-            if (usuario == null)
-                return Unauthorized("Usuário ou senha invalida");
 
+            if (user == null)
+                return Unauthorized("Usuário ou senha inválidos");
             var authClaims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, usuario.username),
-                new Claim(ClaimTypes.Role, usuario.cargo),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(ClaimTypes.Name, user.username),
+                new Claim(ClaimTypes.Role, user.cargo),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
-            // GetToken from authclaims
-
             var token = GetToken(authClaims);
-            usuario.senha = "";
-
-            return Ok(
-                new { token = new JwtSecurityTokenHandler().WriteToken(token), usuario = usuario }
-            );
+            user.senha = "";
+            return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token), user = user });
         }
+
+        [HttpGet]
+        [Route("anonymous")]
+        [AllowAnonymous]
+        public string Anonymous() => "Anônimo";
+
+        [HttpGet]
+        [Route("authenticated")]
+        [Authorize]
+        public string Authenticated() => String.Format("Autenticado - {0}", User.Identity.Name);
+
+        [HttpGet]
+        [Route("aluno")]
+        [Authorize(Roles = "aluno,professor")]
+        public string Aluno() => "Aluno";
+
+        [HttpGet]
+        [Route("professor")]
+        [Authorize(Roles = "professor")]
+        public string Professor() => "Professor";
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {
@@ -58,9 +73,9 @@ namespace dreams_API.Controllers
             );
 
             var token = new JwtSecurityToken(
+                expires: DateTime.Now.AddHours(3),
                 issuer: _configuration["JWT:ValidIssuer"],
                 audience: _configuration["JWT:ValidAudience"],
-                expires: DateTime.Now.AddHours(3),
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(
                     authSigningKey,

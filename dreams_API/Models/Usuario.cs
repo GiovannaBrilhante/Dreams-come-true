@@ -13,8 +13,6 @@ namespace dreams_API.Models
         [StringLength(20), MinLength(2)]
         public string? senha { get;set;} = string.Empty;
 
-        [Required(ErrorMessage="O campo cargo é obrigatório",AllowEmptyStrings=false)]
-        [StringLength(20), MinLength(2)]
         public string? cargo {get; set;} = string.Empty;
     }
 }

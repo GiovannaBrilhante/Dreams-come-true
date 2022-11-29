@@ -1,31 +1,31 @@
-import React, { useEffect, useState} from 'react';
-import './CrudFilme.css';
-import Main from '../../templates/Main';
-import UserService from '../../../services/UserService';
+import React, { useEffect, useState } from "react"
+import "./CrudFilme.css"
+import Main from "../../templates/Main"
+import UserService from "../../../services/UserService"
 
-const title = "Cadastro de filmes";
+const title = "Cadastro de filmes"
 
 export default function CrudFilme(props) {
-    const [lista, setLista] = useState([]);
-    const [mens, setMens] = useState([]);
+    const [lista, setLista] = useState([])
+    const [mens, setMens] = useState(null)
 
     useEffect(() => {
-        UserService.getUsuariosBoard().then(
+        UserService.getUsuarioBoard().then(
             (response) => {
                 console.log("useEffect getUsuarioBoard: " + response.data)
-                setLista(response.data);
-                setMens(null);
+                setLista(response.data)
+                setMens(null)
             },
             (error) => {
                 const _mens =
                     (error.response && error.response.data && error.response.data.message) ||
                     error.message ||
-                    error.toString();
-                setMens(_mens);
+                    error.toString()
+                setMens(_mens)
                 console.log("_mens: " + _mens)
             }
-        );
-    }, []);
+        )
+    }, [])
 
     const renderTable = () => {
         return (
@@ -59,7 +59,7 @@ export default function CrudFilme(props) {
 
     return (
         <Main title={title}>
-            {(mens) ? "Problema com conexão ou autorização (contactar administrador)." : renderTable()}
+            {(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." : renderTable()}
         </Main>
     )
 }

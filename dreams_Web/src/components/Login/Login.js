@@ -12,7 +12,7 @@ export default function Login() {
 
     async function handleSubmit(evento) {
         evento.preventDefault()
-        const userForm = { username, password }
+        //const userForm = { username, password }
 
         if (!username || !password) {
             setMessage("Preencha o username e a senha para continuar!")

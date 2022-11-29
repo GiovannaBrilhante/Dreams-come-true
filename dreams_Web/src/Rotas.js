@@ -27,7 +27,8 @@ export default function Rotas() {
 
         <Routes>
             <Route exact path='/' element={<Home />} />
-            {currentUser ? (<Route path="/login" element={<Login />} />) : (
+
+            {currentUser ? (<Route path="/filmes" element={<CrudFilme />} />) : (
                 <Route exact path='/filmes'
                     element={
                         <Main title="Cadastro de filmes">
