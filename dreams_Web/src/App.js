@@ -16,7 +16,8 @@ function App() {
                 <Header />
                 <Rotas />
                 <Footer />
-                <FloatingBtn />
+                {//<FloatingBtn /> 
+                }
             </div>
         </BrowserRouter>
     )
