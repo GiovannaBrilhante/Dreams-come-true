@@ -1,0 +1,20 @@
+.select-container {
+    color: white;
+    margin: 20px 20px 20px 0px;
+    border-radius: 20px;
+    background-color: #211d2c;
+    padding: 8px 0px 8px 6px;
+
+    width: 25%;
+    border: 1.5px solid #bddff7;
+    border-collapse: collapse;
+}
+
+select{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 12px;
+}
+
+option{
+    font-size: 12px;
+}

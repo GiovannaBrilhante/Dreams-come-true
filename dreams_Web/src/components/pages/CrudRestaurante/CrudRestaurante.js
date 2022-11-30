@@ -10,14 +10,14 @@ const title = "Cadastro de restaurantes"
 const API_URL_RESTA = "http://localhost:5147/api/restaurante"
 const API_URL_FILME = "http://localhost:5147/api/filme"
 const initialState = {
-    restaurante: { id: 0, name: "", avaliacao: 5, codFilme: 0 },
-    filme: { id: 0, name: "", avaliacao: 5, ano: 0, categoria: "" },
+    restaurante: { idRestaurante: 0, name: "", avaliacao: 5, codFilme: 0, url: "" },
+    filme: { idFilmes: 0, name: "", avaliacao: 5, ano: 2020, categoria: "" },
     listaRestaurantes: [{
         idRestaurante: 1, name: "Restaurante 1", avaliacao: 5, codFilme: 1,
     }],
-    listaFilmes: [{
-        idFilme: 1, name: "Para todos os garotos que ja amei", avaliacao: 5, ano: 1972, categoria: "Romance",
-    }],
+    listaFilmes: [
+        { idFilme: 1, name: "Para todos os garotos que ja amei", avaliacao: 5, ano: 2017, categoria: "Romance", },
+        { idFilme: 2, name: "Para todos os garotos que nao amei", avaliacao: 0, ano: 2022, categoria: "Romantico", }],
 }
 
 
@@ -29,6 +29,7 @@ export default function CrudRestaurante() {
     const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
 
     useEffect(() => {
+        /* 
         axios(API_URL_RESTA)
             .then((resp) => {
                 setListaRestaurantes(resp.data)
@@ -42,17 +43,15 @@ export default function CrudRestaurante() {
             })
             .catch((err) => {
                 console.dir(err)
-            })
+            })*/
     })
 
     const limparForm = () => setRestaurante(initialState.restaurante)
 
-
     const salvar = () => {
-        const restaurante = restaurante
-        const metodo = restaurante.id ? "put" : "post"
-        const url = restaurante.id
-            ? `${API_URL_RESTA}/${restaurante.id}`
+        const metodo = restaurante.idRestaurante ? "put" : "post"
+        const url = restaurante.idRestaurante
+            ? `${API_URL_RESTA}/${restaurante.idRestaurante}`
             : API_URL_RESTA
 
         axios[metodo](url, restaurante)
@@ -76,11 +75,11 @@ export default function CrudRestaurante() {
 
     const atualizaCampo = (event) => {
         //clonar usuário a partir do state, para não alterar o state diretamente
-        const restaurante = { ...restaurante }
+        const newRestaurante = { ...restaurante }
         //usar o atributo NAME do input identificar o campo a ser atualizado
-        restaurante[event.target.name] = event.target.value
+        newRestaurante[event.target.name] = event.target.value
         //atualizar o state
-        setRestaurante(restaurante)
+        setRestaurante(newRestaurante)
     }
 
     const atualizaFilme = (event) => {
@@ -111,22 +110,23 @@ export default function CrudRestaurante() {
     const renderForm = () => {
         return (
             <div className="inclui-container">
-                <label> Nome: </label>
+                <label> Restaurante: </label>
                 <input
                     type="text"
                     id="name"
-                    placeholder="Nome do aluno"
+                    placeholder="Nome"
                     className="form-input"
                     name="name"
-                    value={restaurante.nome}
+                    value={restaurante.name}
                     onChange={(e) => atualizaCampo(e)}
                 />
-                <label> Curso: </label>
+
+                <label> Filme: </label>
                 <select
-                    name="idFilme"
+                    name="codFilme"
                     value={restaurante.codFilme}
                     onChange={(e) => {
-                        atualizaFilme(e)
+                        atualizaCampo(e)
                     }}
                     required
                 >
@@ -143,7 +143,44 @@ export default function CrudRestaurante() {
                         </option>
                     ))}
                 </select>
+
+                <label> Avaliação: </label>
+                <select
+                    name="avaliacao"
+                    value={restaurante.avaliacao}
+                    onChange={(e) => {
+                        atualizaCampo(e)
+                    }}
+                    required
+                >
+                    <option key="5.0" value="5.0">
+                        5.0
+                    </option>
+                    <option key="4.0" value="4.0">
+                        4.0
+                    </option>
+                    <option key="3.0" value="3.0">
+                        3.0
+                    </option>
+                    <option key="2.0" value="2.0">
+                        2.0
+                    </option>
+                    <option key="1.0" value="1.0">
+                        1.0
+                    </option>
+                </select>
+
                 <br />
+                <label> URL: </label>
+                <input
+                    type="text"
+                    id="url"
+                    placeholder="URL"
+                    className="form-input"
+                    name="url"
+                    value={restaurante.url}
+                    onChange={(e) => atualizaCampo(e)}
+                />
                 <button
                     className="btn btnSalvar"
                     onClick={(e) => salvar(e)}
@@ -166,9 +203,10 @@ export default function CrudRestaurante() {
                 <table className="listaAlunos styled-table" id="tblListaAlunos">
                     <thead>
                         <tr className="cabecTabela title">
-                            <th className="tabTituloNome">Nome</th>
+                            <th className="tabTituloNome">Restaurante</th>
                             <th className="tabTituloFilme">Filme</th>
                             <th className="tabTituloAvaliacao">Avaliacao</th>
+                            <th className="tabTituloAvaliacao">URL</th>
                             <th className="tabTituloAcoes title">Ações</th>
                         </tr>
                     </thead>
@@ -177,8 +215,9 @@ export default function CrudRestaurante() {
                             ? listaRestaurantes.map((rest) => (
                                 <tr key={rest.id}>
                                     <td>{rest.name}</td>
-                                    <td>{rest.avaliacao}</td>
                                     <td>{rest.codFilme}</td>
+                                    <td>{rest.avaliacao}</td>
+                                    <td>{rest.url}</td>
                                     <td className="td-buttons">
                                         <button
                                             className="btn btn-edit"
