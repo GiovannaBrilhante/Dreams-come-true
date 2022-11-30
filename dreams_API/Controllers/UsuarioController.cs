@@ -17,7 +17,7 @@ using dreams_API.Models;
 
 namespace dreams_API.Controllers
 {
-    [Route("api/[controller]")]//, Authorize(Roles="administrador")]
+    [Route("api/[controller]"), Authorize(Roles="administrador")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
@@ -29,7 +29,6 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "administrador")]
         public ActionResult<List<Usuario>> GetAll()
         {
             if (_context.Usuario is not null)
@@ -43,7 +42,6 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet("{UsuarioId}")]
-        [Authorize(Roles = "administrador")]
         public ActionResult<List<Usuario>> Get(int UsuarioId)
         {
             try
@@ -62,7 +60,6 @@ namespace dreams_API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> post(Usuario model)
         {
             try
