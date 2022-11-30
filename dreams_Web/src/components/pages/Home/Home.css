@@ -6,14 +6,11 @@
 }
 
 body {
-    background-color: #eee;
     color: #333;
     font-family: "Poppins", sans-serif;
     font-size: 13px;
     font-weight: 300;
 }
-
-
 
 p.esconder {
     opacity: 0;
@@ -42,7 +39,7 @@ p.esconder {
     width: 100%;
 
     padding-top: 100px;
-    
+
 }
 
 /* Conteudo Principal */
@@ -535,6 +532,6 @@ folha de estilo do user agent p {
     background-color: red;
 }
 
-a.link-github{
+a.link-github {
     text-decoration: none;
 }

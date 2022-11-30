@@ -47,9 +47,8 @@ export default function Rotas() {
             <Route path="/carometro" element={<CrudCarometro />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
-            <Route path="*" to='/' />
 
-            <Route /*Not found page*/ path='*' element={<NotFoundPage />} />
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     )
 }

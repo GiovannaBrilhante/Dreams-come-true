@@ -3,3 +3,8 @@
 h1 {
     font-family: 'Varela Round', sans-serif;
 }
+
+img.not-found-page {
+    width: 200px;
+    height: auto;
+}

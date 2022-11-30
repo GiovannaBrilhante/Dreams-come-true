@@ -4,7 +4,7 @@
 
 :root {
     --bg-menu: #191622;
-    --bg-primary: #10101a;
+    --bg-primary:     background-color: #10101a;
     --logo-width: 150px;
     --content-header-height: 6.5%
         /* 6.5%60px*/
@@ -28,7 +28,7 @@ body {
 body {
     min-height: 100vh;
     background-color: var(--bg-primary);
-    background: linear-gradient(#2b1055, #7597de);
+    background: #10101a;
     box-sizing: border-box;
     font-family: "Pacifico", sans-serif;
 }
