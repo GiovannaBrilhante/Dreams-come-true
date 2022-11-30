@@ -4,6 +4,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using dreams_API.Data;
 using dreams_API.Models;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using dreams_API.Data;
+using dreams_API.Models;
+
 
 namespace dreams_API.Controllers
 {
@@ -20,12 +30,14 @@ namespace dreams_API.Controllers
 
         [HttpGet]
         [Authorize(Roles = "administrador")]
-        public ActionResult<List<Usuario>> GetAll() {
-            if(_context.Usuario is not null)
+        public ActionResult<List<Usuario>> GetAll()
+        {
+            if (_context.Usuario is not null)
             {
                 return _context.Usuario.ToList();
             }
-            else {
+            else
+            {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
         }
@@ -37,10 +49,11 @@ namespace dreams_API.Controllers
             try
             {
                 var result = _context.Usuario.Find(UsuarioId);
-                if(result == null)
+                if (result == null)
                 {
                     return NotFound();
-                } return Ok(result);
+                }
+                return Ok(result);
             }
             catch
             {
@@ -55,7 +68,7 @@ namespace dreams_API.Controllers
             try
             {
                 _context.Usuario.Add(model);
-                if(await _context.SaveChangesAsync() == 1)
+                if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
                     return Created($"/api/usuario/{model.username}", model);
@@ -66,7 +79,7 @@ namespace dreams_API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados");
             }
             return BadRequest();
-            
+
         }
 
         [HttpPut("{UsuarioId}")]
@@ -77,7 +90,7 @@ namespace dreams_API.Controllers
             {
                 //verifica se existe aluno a ser alterado
                 var result = await _context.Usuario.FindAsync(UsuarioId);
-                if( UsuarioId != null)
+                if (UsuarioId != null)
                 {
                     //método do EF
                     return BadRequest();
@@ -92,7 +105,7 @@ namespace dreams_API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
-    }
+        }
 
         [HttpDelete("{UsuarioId}")]
         [Authorize(Roles = "administrador")]
@@ -102,7 +115,7 @@ namespace dreams_API.Controllers
             {
                 //verifica se existe aluno a ser excluido
                 var usuario = await _context.Usuario.FindAsync(UsuarioId);
-                if( usuario == null)
+                if (usuario == null)
                 {
                     //método do EF
                     return NotFound();
@@ -115,6 +128,6 @@ namespace dreams_API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
+        }
     }
-}
 }
