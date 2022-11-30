@@ -3,6 +3,7 @@ import "./CrudRestaurante.css"
 import Main from "../../templates/Main"
 import axios from "axios"
 import UserService from "../../../services/UserService"
+import AuthService from "../../../services/AuthService"
 
 import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 
@@ -15,6 +16,8 @@ const initialState = {
     listaFilmes: [],
     mens: []
 }
+
+
 
 
 export default function CrudRestaurante() {
@@ -52,7 +55,7 @@ export default function CrudRestaurante() {
             ? `${API_URL_RESTA}/${restaurante.idRestaurante}`
             : API_URL_RESTA
 
-        axios[metodo](url, restaurante)
+        axios[metodo](url, restaurante, AuthService.headerAuthorization())
             .then((resp) => {
                 const restaurantes = getListaAtualizada(resp.data)
                 setRestaurante(initialState.restaurante)
@@ -97,7 +100,7 @@ export default function CrudRestaurante() {
         const url = API_URL_RESTA + "/" + restaurante.id
         if (!window.confirm("Confirma remoção do restaurante: " + restaurante.ra)) return
 
-        axios["delete"](url, restaurante)
+        axios["delete"](url, restaurante, AuthService.headerAuthorization())
             .then((_resp) => {
                 const lista = getListaAtualizada(restaurante, false)
                 setRestaurante(initialState.restaurante)

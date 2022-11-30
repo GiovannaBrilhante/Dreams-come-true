@@ -1,27 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj": {}
+    "/Users/u21429/Dreams-come-true/dreams_API/dreams_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj": {
+    "/Users/u21429/Dreams-come-true/dreams_API/dreams_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj",
+        "projectUniqueName": "/Users/u21429/Dreams-come-true/dreams_API/dreams_API.csproj",
         "projectName": "dreams_API",
-        "projectPath": "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\dreams_API.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\user\\Patricia\\Dreams-come-true\\dreams_API\\obj\\",
+        "projectPath": "/Users/u21429/Dreams-come-true/dreams_API/dreams_API.csproj",
+        "packagesPath": "/Users/u21429/.nuget/packages/",
+        "outputPath": "/Users/u21429/Dreams-come-true/dreams_API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/u21429/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -63,8 +61,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -76,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
         }
       }
     }

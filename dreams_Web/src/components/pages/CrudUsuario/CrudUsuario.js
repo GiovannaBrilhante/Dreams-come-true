@@ -10,14 +10,20 @@ const initialState = {
     message: ""
 }
 
-import AuthService from '../../../services/AuthService'
+import AuthService from "../../../services/AuthService"
 
 export default class CrudUsuario extends Component {
     state = { ...initialState }
     componentDidMount() {
-        axios(urlAPI, { headers: { Authorization: 'Bearer' + AuthService.getCurrentUser()?.token } }).then(resp => {
+        axios(urlAPI, AuthService.headerAuthorization()).then(resp => {
             this.setState({ lista: resp.data })
-        })
+        }).catch((err) => {
+            console.dir(err)
+
+            const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+            this.setState({ message: resMessage })
+        }
+        )
     }
 
     limpar() {
@@ -26,9 +32,10 @@ export default class CrudUsuario extends Component {
 
     salvar() {
         const usuario = this.state.usuario
-        const metodo = "post"
+        const metodo = usuario.id ? "put" : "post"
+        const url = usuario.id != 0 ? `${urlAPI}/${usuario.id}` : urlAPI
 
-        axios[metodo](urlAPI, usuario, { headers: { Authorization: 'Bearer' + AuthService.getCurrentUser()?.token } }).then(resp => {
+        axios[metodo](urlAPI, usuario, AuthService.headerAuthorization()).then(resp => {
             const lista = this.getListaAtualizada(resp.data)
             this.setState({ usuario: initialState.usuario, lista })
         }).catch((err) => {
@@ -40,7 +47,7 @@ export default class CrudUsuario extends Component {
         )
     }
 
-    getListaAtualizada(usuario, add=true) {
+    getListaAtualizada(usuario, add = true) {
         const lista = this.state.lista.filter(a => a.id !== usuario.id)
         if (add) lista.unshift(usuario)
         return lista
@@ -49,6 +56,7 @@ export default class CrudUsuario extends Component {
     atualizaCampo(event) {
         //clonar usuario a partit do state para não alterar o state diretamente
         const usuario = { ...this.state.usuario }
+        usuario[event.target.name] = event.target.value
         //atualizar o state
         this.setState({ usuario })
     }
@@ -56,7 +64,7 @@ export default class CrudUsuario extends Component {
     renderForm() {
         return (
             <div className="inclui-container">
-                <label> Username: </label>  
+                <label> Username: </label>
                 <input
                     type="text"
                     id="username"
@@ -126,7 +134,7 @@ export default class CrudUsuario extends Component {
         return (
             <Main title={title}>
                 {this.renderForm()}
-                <h4 className="msgErro">{this.message}</h4>
+                <h4 className="msgErro">{this.state.message ? "Problema com conexão ou autorização (contactar administrador)." : ""}</h4>
                 {this.renderTable()}
             </Main>
         )

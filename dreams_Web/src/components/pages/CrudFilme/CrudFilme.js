@@ -7,15 +7,17 @@ import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 const title = "Cadastro de filmes"
 const API_URL = "http://localhost:5006/api/Filmes"
 
-export default function CrudFilme(props) {
+export default function CrudFilme(_props) {
 
     const initialState = {
-        filme: { idFilme: 0, name: "", avaliacao: "", ano: 0, categoria: "" }
+        filme: { idFilme: 0, name: "", avaliacao: "", ano: 0, categoria: "" },
+        lista: [],
+        mens: []
     }
     const [filme, setFilme] = useState(initialState.filme)
-    const [lista, setLista] = useState([])
-    const [mens, setMens] = useState(null)
-    
+    const [lista, setLista] = useState(initialState.lista)
+    const [mens, setMens] = useState(initialState.mens)
+
     const [message, setMessage] = useState("")
 
     useEffect(() => {
@@ -42,7 +44,9 @@ export default function CrudFilme(props) {
     const salvarFilme = () => {
         const metodo = filme.idFilme ? "put" : "post"
         const url = filme.idFilme != 0 ? `${API_URL}/${filme.idFilme}` : API_URL
+
         filme.ano = Number(filme.ano)
+
         console.log(filme)
         UserService.salvar_filme(metodo, url, filme)
             .then((resp) => {
@@ -80,7 +84,7 @@ export default function CrudFilme(props) {
         if (!window.confirm("Confirma remoção do filme: " + filme.name))
             return
 
-        UserService.deletarFilme(filme.idFilme)
+        UserService.deletar_filme(filme.idFilme)
             .then((_resp) => {
                 const lista = getListaAtualizada(filme, false)
                 setFilme(initialState.filme)
@@ -110,6 +114,7 @@ export default function CrudFilme(props) {
                 />
                 <label> Avaliação: </label>
                 <select
+                    id="avaliacao"
                     name="avaliacao"
                     value={filme.avaliacao}
                     onChange={(e) => {
@@ -214,14 +219,15 @@ export default function CrudFilme(props) {
 
     return (
         <Main title={title}>
-            {renderForm()}
-            {renderTable()}
+            {(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
+                <>
+                    {renderForm()}
+                    <h4 className="msgErro">{message}</h4>
+                    {renderTable()}
+                </>}
         </Main>
     )
 }
-//{(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
-/*<>
+/*
 {renderForm()}
-<h4 className="msgErro">{message}</h4>
-{renderTable()}
-</>}*/
+{renderTable()}*/
