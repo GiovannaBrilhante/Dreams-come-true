@@ -38,7 +38,7 @@ namespace dreams_API.Controllers
             var authClaims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.username),
-                new Claim(ClaimTypes.Role, user.cargo),
+                new Claim(ClaimTypes.Role, user.role),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
             };
             var token = GetToken(authClaims);
@@ -57,14 +57,14 @@ namespace dreams_API.Controllers
         public string Authenticated() => String.Format("Autenticado - {0}", User.Identity.Name);
 
         [HttpGet]
-        [Route("aluno")]
-        [Authorize(Roles = "aluno,professor")]
-        public string Aluno() => "Aluno";
+        [Route("usuario")]
+        [Authorize(Roles = "usuario, administrador")]
+        public string Usuario() => "Usuario";
 
         [HttpGet]
-        [Route("professor")]
-        [Authorize(Roles = "professor")]
-        public string Professor() => "Professor";
+        [Route("administrador")]
+        [Authorize(Roles = "administrador")]
+        public string Administrador() => "Administrador";
 
         private JwtSecurityToken GetToken(List<Claim> authClaims)
         {

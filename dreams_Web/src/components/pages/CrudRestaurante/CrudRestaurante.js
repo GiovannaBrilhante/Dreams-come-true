@@ -29,10 +29,24 @@ export default function CrudRestaurante() {
 
     //pra que [] ?
     useEffect(() => {
-        UserService.getUsuarioBoard().then(
+        UserService.getRestauranteBoard().then(
             (response) => {
-                console.log("useEffect getUsuarioBoard: " + response.data)
+                console.log("useEffect getRestaurantes: " + response.data)
                 setListaRestaurantes(response.data)
+                setMens(null)
+            },
+            (error) => {
+                const _mens =
+                    (error.response && error.response.data && error.response.data.message) ||
+                    error.message ||
+                    error.toString()
+                setMens(_mens)
+                console.log("_mens: " + _mens)
+            }
+        )
+        UserService.getPublicContent.getFilmes().then(
+            (response) => {
+                console.log("useEffect getRestaurantes: " + response.data)
                 setListaFilmes(response.data)
                 setMens(null)
             },
@@ -222,8 +236,8 @@ export default function CrudRestaurante() {
                         {Array.isArray(listaRestaurantes)
                             ? listaRestaurantes.map((rest) => (
                                 <tr key={rest.id}>
-                                    <td>{rest.nameFilme}</td>
                                     <td>{rest.name}</td>
+                                    <td>{rest.nameFilme}</td>
                                     <td>{rest.avaliacao}</td>
                                     <td>{rest.url}</td>
                                     <td className="td-buttons">

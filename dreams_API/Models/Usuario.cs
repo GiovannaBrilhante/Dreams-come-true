@@ -13,6 +13,6 @@ namespace dreams_API.Models
         [StringLength(20), MinLength(2)]
         public string? senha { get;set;} = string.Empty;
 
-        public string? cargo {get; set;} = string.Empty;
+        public string? role {get; set;} = string.Empty;
     }
 }

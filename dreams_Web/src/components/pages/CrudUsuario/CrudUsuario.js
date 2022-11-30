@@ -5,24 +5,30 @@ import Main from "../../templates/Main"
 const title = "Cadastro de Usuários"
 const urlAPI = "http://localhost:5006/api/Usuario"
 const initialState = {
-    usuario: { id: 0, username: "", senha: "", cargo: "" },
+    usuario: { id: 0, username: "", senha: "", role: "" },
     lista: [],
     message: ""
 }
 
-import AuthService from "../../../services/AuthService"
+import UserService from "../../../services/UserService"
 
 export default class CrudUsuario extends Component {
     state = { ...initialState }
     componentDidMount() {
-        axios(urlAPI, AuthService.headerAuthorization()).then(resp => {
-            this.setState({ lista: resp.data })
-        }).catch((err) => {
-            console.dir(err)
-
-            const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
-            this.setState({ message: resMessage })
-        }
+        UserService.getUsuarioBoard().then(
+            (response) => {
+                console.log("useEffect getUsuarioBoard: " + response.data)
+                this.setState({ lista: response.data })
+                this.setState({ message: "" })
+            },
+            (error) => {
+                const _mens =
+                    (error.response && error.response.data && error.response.data.message) ||
+                    error.message ||
+                    error.toString()
+                this.setState({ message: _mens })
+                console.log("_mens: " + _mens)
+            }
         )
     }
 
@@ -30,20 +36,23 @@ export default class CrudUsuario extends Component {
         this.setState({ usuario: initialState.usuario })
     }
 
+
     salvar() {
         const usuario = this.state.usuario
         const metodo = usuario.id ? "put" : "post"
         const url = usuario.id != 0 ? `${urlAPI}/${usuario.id}` : urlAPI
 
-        axios[metodo](urlAPI, usuario, AuthService.headerAuthorization()).then(resp => {
-            const lista = this.getListaAtualizada(resp.data)
-            this.setState({ usuario: initialState.usuario, lista })
-        }).catch((err) => {
-            console.dir(err)
+        UserService.salvar_usuario(metodo, url, usuario).then(
+            (resp) => {
+                const lista = this.getListaAtualizada(resp.data)
+                this.setState({ usuario: initialState.usuario, lista })
+            },
+            (err) => {
+                console.dir(err)
 
-            const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
-            this.setState({ message: resMessage })
-        }
+                const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+                this.setState({ message: resMessage })
+            }
         )
     }
 
@@ -77,11 +86,11 @@ export default class CrudUsuario extends Component {
                 <label> Função: </label>
                 <input
                     type="text"
-                    id="cargo"
+                    id="role"
                     placeholder="Qual sua função? "
                     className="form-imput"
-                    name="cargo"
-                    value={this.state.usuario.cargo}
+                    name="role"
+                    value={this.state.usuario.role}
                     onChange={e => this.atualizaCampo(e)}
                 />
                 <label> Senha: </label>
@@ -113,7 +122,7 @@ export default class CrudUsuario extends Component {
                         <tr className='cabecTabela'>
                             <th className='tabTituloUsername'> Username</th>
                             {/* <th className='tabTituloSenha'> Senha</th> */}
-                            <th className='tabTituloCargo'> Cargo</th>
+                            <th className='tabTitulorole'> Cargo</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,7 +131,7 @@ export default class CrudUsuario extends Component {
                                 <tr key={usuario.id}>
                                     <td>{usuario.username}</td>
                                     {/*<td>{usuario.senha}</td>*/}
-                                    <td>{usuario.cargo}</td>
+                                    <td>{usuario.role}</td>
                                 </tr>
                         )}
                     </tbody>

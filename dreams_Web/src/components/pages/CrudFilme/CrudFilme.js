@@ -22,7 +22,7 @@ export default function CrudFilme(_props) {
 
     useEffect(() => {
         setMessage("")
-        UserService.getUsuarioBoard().then(
+        UserService.getPublicContent.getFilmes().then(
             (response) => {
                 console.log("useEffect getUsuarioBoard: " + response.data)
                 setLista(response.data)
@@ -122,6 +122,9 @@ export default function CrudFilme(_props) {
                     }}
                     required
                 >
+                    <option key="" value="">
+                        Escolha
+                    </option>
                     <option key="5.0" value="5.0">
                         5.0
                     </option>
@@ -222,7 +225,7 @@ export default function CrudFilme(_props) {
             {(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
                 <>
                     {renderForm()}
-                    <h4 className="msgErro">{message}</h4>
+                    <h4 className="msgErro">{message ? 'Somente administrador e todos os campos preenchidos' : ""} </h4>
                     {renderTable()}
                 </>}
         </Main>
