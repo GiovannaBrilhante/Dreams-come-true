@@ -15,9 +15,13 @@ const getUsuarioBoard = async () => {
     return await axios.get(API_URL + "filmes", {headers: {Authorization: 'Bearer' + user.token}})
 }
 
+const salvar_filme = async (method, url, filme) => {
+    return await axios[method](url, filme, {headers: {Authorization: 'Bearer' + user.token}})
+}
 const UserService = {
     getPublicContent,
-    getUsuarioBoard
+    getUsuarioBoard,
+    salvar_filme
 }
 
 export default UserService
