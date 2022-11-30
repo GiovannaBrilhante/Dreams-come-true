@@ -5,65 +5,58 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
 ConfigurationManager configuration = builder.Configuration;
 
 //Allow CORS
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
-
-//Allow CORS
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy(MyAllowSpecificOrigins, builder => {
-        builder.WithOrigins("http://localhost").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
-        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
-        builder.SetIsOriginAllowed(origin => true);
-    });
+    options.AddPolicy(
+        MyAllowSpecificOrigins,
+        builder =>
+        {
+            builder
+                .WithOrigins("http://localhost")
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+            builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+            builder.SetIsOriginAllowed(origin => true);
+        }
+    );
 });
 
-// Add services to the container.
-
-//Ading Authentication
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-
-//builder.Services.AddDefaultIdentity<IdentityUser>( ... )
-   // .AddRoles<IdentityRole>();
-//Ading Authorization
-/*builder.Services.AddAuthorization(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthorizationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthorizationScheme;
-    options.DefaultScheme = JwtBearerDefaults.AuthorizationScheme;
-})*/
-
-// Adding Jwt Bearer
-.AddJwtBearer(options =>
-{
-    options.SaveToken = true;
-    options.RequireHttpsMetadata = false;
-    options.TokenValidationParameters = new TokenValidationParameters()
+// Adding Authentication
+builder.Services
+    .AddAuthentication(options =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = configuration["JWT: ValidAudience"],
-        ValidIssuer = configuration["JWT:ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Secret"]))
-    };
-});
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    })
+    // Adding Jwt Bearer
+    .AddJwtBearer(options =>
+    {
+        options.SaveToken = true;
+        options.RequireHttpsMetadata = false;
+        options.TokenValidationParameters = new TokenValidationParameters()
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidAudience = configuration["JWT:ValidAudience"],
+            ValidIssuer = configuration["JWT:ValidIssuer"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(configuration["JWT:Secret"])
+            )
+        };
+    });
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
-//Add DbContext
+// Add DbContext
 builder.Services.AddDbContext<DreamsContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("StringConexaoSQLServer"));
@@ -79,12 +72,12 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+
+//Allow CORS
 app.UseCors(MyAllowSpecificOrigins);
 
-//Authetication & Authorization
+// Authentication & Authorization
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

@@ -29,7 +29,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
-        //[Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador")]
         public ActionResult<List<Usuario>> GetAll()
         {
             if (_context.Usuario is not null)
@@ -43,7 +43,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet("{UsuarioId}")]
-        //[Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador")]
         public ActionResult<List<Usuario>> Get(int UsuarioId)
         {
             try
@@ -62,7 +62,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "administrador")]
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> post(Usuario model)
         {
             try
@@ -82,7 +82,7 @@ namespace dreams_API.Controllers
 
         }
 
-        [HttpPut("{UsuarioId}")]
+        /*[HttpPut("{UsuarioId}")]
         //[Authorize(Roles = "administrador")]
         public async Task<ActionResult> put(int UsuarioId, Usuario dadosUsuarioAlt)
         {
@@ -95,11 +95,11 @@ namespace dreams_API.Controllers
                     //método do EF
                     return BadRequest();
                 }
-                result.username = dadosUsuarioAlt.username;
+                result.Usuarioname = dadosUsuarioAlt.Usuarioname;
                 result.senha = dadosUsuarioAlt.senha;
-                result.role = dadosUsuarioAlt.role;
+                result.cargo = dadosUsuarioAlt.cargo;
                 await _context.SaveChangesAsync();
-                return Created($"/api/usuario/{dadosUsuarioAlt.username}", dadosUsuarioAlt);
+                return Created($"/api/usuario/{dadosUsuarioAlt.Usuarioname}", dadosUsuarioAlt);
             }
             catch
             {
@@ -128,6 +128,6 @@ namespace dreams_API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
-        }
+        }*/
     }
 }
