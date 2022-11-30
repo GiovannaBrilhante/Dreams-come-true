@@ -19,5 +19,7 @@ namespace dreams_API.Data
         public DbSet<Usuario>? Usuario{get; set;}
 
         public DbSet<Filmes>? Filmes{get; set;}
+
+        public DbSet<Restaurantes>? Restaurantes{get; set;}
     }
 }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import "./CrudRestaurante.css"
 import Main from "../../templates/Main"
 import axios from "axios"
+import UserService from "../../../services/UserService"
 
 import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 
@@ -10,41 +11,38 @@ const title = "Cadastro de restaurantes"
 const API_URL_RESTA = "http://localhost:5147/api/restaurante"
 const API_URL_FILME = "http://localhost:5147/api/filme"
 const initialState = {
-    restaurante: { idRestaurante: 0, name: "", avaliacao: 5, codFilme: 0, url: "" },
-    filme: { idFilmes: 0, name: "", avaliacao: 5, ano: 2020, categoria: "" },
-    listaRestaurantes: [{
-        idRestaurante: 1, name: "Restaurante 1", avaliacao: 5, codFilme: 1,
-    }],
-    listaFilmes: [
-        { idFilme: 1, name: "Para todos os garotos que ja amei", avaliacao: 5, ano: 2017, categoria: "Romance", },
-        { idFilme: 2, name: "Para todos os garotos que nao amei", avaliacao: 0, ano: 2022, categoria: "Romantico", }],
+    restaurante: { idRestaurante: 0, name: "", avaliacao: "", nameFilme: "", url: "" },
+    listaRestaurantes: [],
+    listaFilmes: [],
+    mens: []
 }
 
 
 export default function CrudRestaurante() {
     const [restaurante, setRestaurante] = useState(initialState.restaurante)
-    const [listaRestaurantes, setListaRestaurantes] = useState(
-        initialState.listaRestaurantes
-    )
+    const [listaRestaurantes, setListaRestaurantes] = useState(initialState.listaRestaurantes)
     const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
+    const [mens, setMens] = useState(initialState.mens)
 
+    //pra que [] ?
     useEffect(() => {
-        /* 
-        axios(API_URL_RESTA)
-            .then((resp) => {
-                setListaRestaurantes(resp.data)
-            })
-            .catch((err) => {
-                console.dir(err)
-            })
-        axios(API_URL_FILME)
-            .then((resp) => {
-                setListaFilmes(resp.data)
-            })
-            .catch((err) => {
-                console.dir(err)
-            })*/
-    })
+        UserService.getUsuarioBoard().then(
+            (response) => {
+                console.log("useEffect getUsuarioBoard: " + response.data)
+                setListaRestaurantes(response.data)
+                setListaFilmes(response.data)
+                setMens(null)
+            },
+            (error) => {
+                const _mens =
+                    (error.response && error.response.data && error.response.data.message) ||
+                    error.message ||
+                    error.toString()
+                setMens(_mens)
+                console.log("_mens: " + _mens)
+            }
+        )
+    }, [])
 
     const limparForm = () => setRestaurante(initialState.restaurante)
 
@@ -67,7 +65,7 @@ export default function CrudRestaurante() {
 
     const getListaAtualizada = (restaurante, add = true) => {
         const lista = listaRestaurantes.filter(
-            (a) => a.id !== restaurante.id
+            (a) => a.idRestaurante !== restaurante.idRestaurante
         )
         if (add) lista.unshift(restaurante)
         return lista
@@ -123,8 +121,8 @@ export default function CrudRestaurante() {
 
                 <label> Filme: </label>
                 <select
-                    name="codFilme"
-                    value={restaurante.codFilme}
+                    name="nameFilme"
+                    value={restaurante.nameFilme}
                     onChange={(e) => {
                         atualizaCampo(e)
                     }}
@@ -206,7 +204,7 @@ export default function CrudRestaurante() {
                             <th className="tabTituloNome">Restaurante</th>
                             <th className="tabTituloFilme">Filme</th>
                             <th className="tabTituloAvaliacao">Avaliacao</th>
-                            <th className="tabTituloAvaliacao">URL</th>
+                            <th className="tabTituloUrl">URL</th>
                             <th className="tabTituloAcoes title">Ações</th>
                         </tr>
                     </thead>
