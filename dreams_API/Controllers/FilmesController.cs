@@ -1,19 +1,7 @@
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using dreams_API.Data;
 using dreams_API.Models;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
-using dreams_API.Data;
-using dreams_API.Models;
-
 
 namespace dreams_API.Controllers
 {
@@ -109,7 +97,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpDelete("{FilmesId}")]
-        [Authorize(Roles="administrador")]
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> delete(int FilmesId)
         {
             try
