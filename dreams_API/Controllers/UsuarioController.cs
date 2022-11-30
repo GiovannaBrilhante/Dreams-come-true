@@ -17,7 +17,7 @@ using dreams_API.Models;
 
 namespace dreams_API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]"), Authorize(Roles = "usuario")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {
@@ -29,7 +29,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "administrador")]
+        //[Authorize(Roles = "administrador")]
         public ActionResult<List<Usuario>> GetAll()
         {
             if (_context.Usuario is not null)
@@ -43,7 +43,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet("{UsuarioId}")]
-        [Authorize(Roles = "administrador")]
+        //[Authorize(Roles = "administrador")]
         public ActionResult<List<Usuario>> Get(int UsuarioId)
         {
             try
@@ -62,7 +62,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "administrador")]
+        //[Authorize(Roles = "administrador")]
         public async Task<ActionResult> post(Usuario model)
         {
             try
@@ -83,7 +83,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPut("{UsuarioId}")]
-        [Authorize(Roles = "administrador")]
+        //[Authorize(Roles = "administrador")]
         public async Task<ActionResult> put(int UsuarioId, Usuario dadosUsuarioAlt)
         {
             try
@@ -108,7 +108,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpDelete("{UsuarioId}")]
-        [Authorize(Roles="administrador")]
+        //[Authorize(Roles="administrador")]
         public async Task<ActionResult> delete(int UsuarioId)
         {
             try

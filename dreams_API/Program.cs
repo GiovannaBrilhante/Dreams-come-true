@@ -32,6 +32,16 @@ builder.Services.AddAuthentication(options =>
     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
 })
 
+//builder.Services.AddDefaultIdentity<IdentityUser>( ... )
+   // .AddRoles<IdentityRole>();
+//Ading Authorization
+/*builder.Services.AddAuthorization(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthorizationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthorizationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthorizationScheme;
+})*/
+
 // Adding Jwt Bearer
 .AddJwtBearer(options =>
 {
