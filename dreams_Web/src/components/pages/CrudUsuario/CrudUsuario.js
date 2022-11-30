@@ -50,6 +50,7 @@ export default class CrudUsuario extends Component {
             (err) => {
                 console.dir(err)
 
+
                 const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
                 this.setState({ message: resMessage })
             }

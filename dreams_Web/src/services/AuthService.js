@@ -25,7 +25,7 @@ const getCurrentUser = () => {
 const headerAuthorization = () => {
     return {
         headers: {
-            Authorization: 'Bearer ' + getCurrentUser()?.token
+            Authorization: "Bearer " + getCurrentUser()?.token
         }
     }
 }
