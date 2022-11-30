@@ -35,7 +35,7 @@ export default class CrudUsuario extends Component {
         const metodo = usuario.id ? "put" : "post"
         const url = usuario.id != 0 ? `${urlAPI}/${usuario.id}` : urlAPI
 
-        axios[metodo](urlAPI, usuario, AuthService.headerAuthorization()).then(resp => {
+        axios[metodo](url, usuario, AuthService.headerAuthorization()).then(resp => {
             const lista = this.getListaAtualizada(resp.data)
             this.setState({ usuario: initialState.usuario, lista })
         }).catch((err) => {

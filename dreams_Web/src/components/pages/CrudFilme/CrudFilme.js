@@ -114,7 +114,7 @@ export default function CrudFilme(_props) {
                 />
                 <label> Avaliação: </label>
                 <select
-                    id="avaliacao"
+                    id="avali"
                     name="avaliacao"
                     value={filme.avaliacao}
                     onChange={(e) => {
@@ -183,7 +183,6 @@ export default function CrudFilme(_props) {
                             <th className='tabTituloAno'>Ano do filme</th>
                             <th className='tabTituloCategoria'>Categoria do filme</th>
                             <th className="tabTituloAcoes"> Ações</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -195,7 +194,6 @@ export default function CrudFilme(_props) {
                                         <td>{filme.avaliacao}</td>
                                         <td>{filme.ano}</td>
                                         <td>{filme.categoria}</td>
-                                        <td>{filme.restaurantes}</td>
                                         <td className="td-buttons">
                                             <button className="btn btn-edit"
                                                 onClick={() =>
