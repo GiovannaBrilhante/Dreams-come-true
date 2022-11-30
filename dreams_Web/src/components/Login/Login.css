@@ -1,7 +1,7 @@
 .formLogin {
     margin: auto;
     margin-top: 50px;
-    width: 400px;
+    width: 450px;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 25px;
@@ -21,7 +21,6 @@
 .inputAuth1 {
     padding: 12px;
     margin: 8px 0;
-    width: 10000px;
 }
 
 .inputAuth {

@@ -17,7 +17,7 @@ using dreams_API.Models;
 
 namespace dreams_API.Controllers
 {
-    [Route("api/[controller]"), Authorize(Roles = "usuario")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
     {

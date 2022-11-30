@@ -212,14 +212,15 @@ export default function CrudRestaurante() {
                             <th className="tabTituloAvaliacao">Avaliacao</th>
                             <th className="tabTituloUrl">URL</th>
                             <th className="tabTituloAcoes title">Ações</th>
+                            <th className="tabTituloAcoes title">Visitados</th>
                         </tr>
                     </thead>
                     <tbody>
                         {Array.isArray(listaRestaurantes)
                             ? listaRestaurantes.map((rest) => (
                                 <tr key={rest.id}>
+                                    <td>{rest.nameFilme}</td>
                                     <td>{rest.name}</td>
-                                    <td>{rest.codFilme}</td>
                                     <td>{rest.avaliacao}</td>
                                     <td>{rest.url}</td>
                                     <td className="td-buttons">
@@ -241,6 +242,7 @@ export default function CrudRestaurante() {
                                             <BsFillTrash2Fill /> Excluir
                                         </button>
                                     </td>
+                                    <td><input type="checkbox" /></td>
                                 </tr>
                             ))
                             : null}

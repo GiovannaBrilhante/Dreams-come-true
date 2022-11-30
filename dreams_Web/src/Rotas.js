@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import CrudRestaurante from "./components/pages/CrudRestaurante/CrudRestaurante"
 import CrudFilme from "./components/pages/CrudFilme/CrudFilme"
 import CrudCarometro from "./components/pages/CrudCarometro/CrudCarometro"
+import CrudUsuario from "./components/pages/CrudUsuario/CrudUsuario"
 import Home from "./components/pages/Home/Home"
 import NotFoundPage from "./components/pages/NotFound/NotFound"
 
@@ -45,6 +46,7 @@ export default function Rotas() {
             )}
 
             <Route path="/carometro" element={<CrudCarometro />} />
+            <Route path="/usuarios" element={<CrudUsuario />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
 

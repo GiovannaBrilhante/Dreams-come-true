@@ -15,15 +15,6 @@ export default function Menu(props) {
 
     return (
         <nav className='menu'>
-            {currentUser ? (
-                <NavLink to="/logout" activeClassName="active">
-                    logout
-                </NavLink>
-            ) : (
-                <NavLink to="/login" activeClassName="active">
-                    Login
-                </NavLink>
-            )}
             <NavLink to="/" activeClassName="active">
                 Home
             </NavLink>
@@ -42,7 +33,7 @@ export default function Menu(props) {
             <div className="enterMethod">
                 {currentUser ? (
                     <NavLink to="/logout" activeClassName="active">
-                        logout
+                        Logout
                     </NavLink>
                 ) : (
                     <NavLink to="/login" activeClassName="active">
