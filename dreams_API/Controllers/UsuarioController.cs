@@ -108,7 +108,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpDelete("{UsuarioId}")]
-        [Authorize(Roles = "administrador")]
+        [Authorize(Roles="administrador")]
         public async Task<ActionResult> delete(int UsuarioId)
         {
             try

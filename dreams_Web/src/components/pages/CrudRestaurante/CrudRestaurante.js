@@ -9,7 +9,6 @@ import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 const title = "Cadastro de restaurantes"
 
 const API_URL_RESTA = "http://localhost:5006/api/restaurante"
-const API_URL_FILME = "http://localhost:5006/api/filme"
 const initialState = {
     restaurante: { idRestaurante: 0, name: "", avaliacao: "", nameFilme: "", url: "" },
     listaRestaurantes: [],

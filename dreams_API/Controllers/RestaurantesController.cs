@@ -29,7 +29,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "administrador, usuario")]
+        [Authorize(Roles = "administrador,usuario")]
         public ActionResult<List<Restaurantes>> GetAll() {
             if(_context.Restaurantes is not null)
             {
@@ -97,7 +97,7 @@ namespace dreams_API.Controllers
                 result.nameFilme = dadosRestaurantesAlt.nameFilme;
                 result.url= dadosRestaurantesAlt.url;
                 await _context.SaveChangesAsync();
-                return Created($"/api/Filmes/{dadosRestaurantesAlt.name}", dadosRestaurantesAlt);
+                return Created($"/api/Restaurantes/{dadosRestaurantesAlt.name}", dadosRestaurantesAlt);
             }
             catch
             {
