@@ -18,7 +18,7 @@ export default function Menu(props) {
             <NavLink to="/" activeClassName="active">
                 Sonho
             </NavLink>
-            <NavLink to="/carometro" activeClassName="active">
+            <NavLink to="/realidade" activeClassName="active">
                 Realidade
             </NavLink>
             <NavLink to="/restaurantes" activeClassName="active">

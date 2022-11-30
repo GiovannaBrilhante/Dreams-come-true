@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom"
 
 import CrudRestaurante from "./components/pages/CrudRestaurante/CrudRestaurante"
 import CrudFilme from "./components/pages/CrudFilme/CrudFilme"
-import CrudCarometro from "./components/pages/CrudCarometro/CrudCarometro"
+import CrudRealidade from "./components/pages/CrudRealidade/CrudRealidade"
 import CrudUsuario from "./components/pages/CrudUsuario/CrudUsuario"
 import Home from "./components/pages/Home/Home"
 import NotFoundPage from "./components/pages/NotFound/NotFound"
@@ -29,14 +29,6 @@ export default function Rotas() {
         <Routes>
             <Route exact path='/' element={<Home />} />
 
-            {currentUser ? (<Route path="/filmes" element={<CrudFilme />} />) : (
-                <Route exact path='/filmes'
-                    element={
-                        <Main title="Cadastro de filmes">
-                            <div>Não autorizado! </div>
-                        </Main>} />
-            )}
-
             {currentUser ? (<Route path="/restaurantes" element={<CrudRestaurante />} />) : (
                 <Route exact path='/restaurantes'
                     element={
@@ -45,7 +37,8 @@ export default function Rotas() {
                         </Main>} />
             )}
 
-            <Route path="/carometro" element={<CrudCarometro />} />
+            <Route path="/filmes" element={<CrudFilme />} /> 
+            <Route path="/realidade" element={<CrudRealidade />} />
             <Route path="/usuarios" element={<CrudUsuario />} />
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />

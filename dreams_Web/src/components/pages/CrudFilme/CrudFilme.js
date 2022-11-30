@@ -214,12 +214,14 @@ export default function CrudFilme(props) {
 
     return (
         <Main title={title}>
-            {(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
-                <>
-                    {renderForm()}
-                    <h4 className="msgErro">{message}</h4>
-                    {renderTable()}
-                </>}
+            {renderForm()}
+            {renderTable()}
         </Main>
     )
 }
+//{(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
+/*<>
+{renderForm()}
+<h4 className="msgErro">{message}</h4>
+{renderTable()}
+</>}*/
