@@ -19,6 +19,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "administrador, usuario")]
         public ActionResult<List<Restaurantes>> GetAll() {
             if(_context.Restaurantes is not null)
             {
@@ -30,6 +31,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet("{RestaurantesId}")]
+        [Authorize(Roles = "administrador,usuario")]
         public ActionResult<List<Restaurantes>> Get(int RestaurantesId)
         {
             try
@@ -47,6 +49,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "administador,usuario")]
         public async Task<ActionResult> post(Restaurantes model)
         {
             try
@@ -67,6 +70,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPut("{RestaurantesId}")]
+        [Authorize(Roles = "administador")]
         public async Task<ActionResult> put(int RestaurantesId, Restaurantes dadosRestaurantesAlt)
         {
             try
@@ -92,6 +96,7 @@ namespace dreams_API.Controllers
     }
 
         [HttpDelete("{RestaurantesId}")]
+        [Authorize(Roles = "administador")]
         public async Task<ActionResult> delete(int RestaurantesId)
         {
             try

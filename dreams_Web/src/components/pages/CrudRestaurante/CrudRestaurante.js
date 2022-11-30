@@ -8,8 +8,8 @@ import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 
 const title = "Cadastro de restaurantes"
 
-const API_URL_RESTA = "http://localhost:5147/api/restaurante"
-const API_URL_FILME = "http://localhost:5147/api/filme"
+const API_URL_RESTA = "http://localhost:5006/api/restaurante"
+const API_URL_FILME = "http://localhost:5006/api/filme"
 const initialState = {
     restaurante: { idRestaurante: 0, name: "", avaliacao: "", nameFilme: "", url: "" },
     listaRestaurantes: [],
@@ -22,6 +22,7 @@ export default function CrudRestaurante() {
     const [restaurante, setRestaurante] = useState(initialState.restaurante)
     const [listaRestaurantes, setListaRestaurantes] = useState(initialState.listaRestaurantes)
     const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
+    const [message, setMessage] = useState("")
     const [mens, setMens] = useState(initialState.mens)
 
     //pra que [] ?
@@ -60,6 +61,9 @@ export default function CrudRestaurante() {
             })
             .catch((err) => {
                 console.dir(err)
+
+                const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+                setMessage(resMessage)
             })
     }
 
@@ -102,6 +106,9 @@ export default function CrudRestaurante() {
             })
             .catch((err) => {
                 console.dir(err)
+
+                const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+                setMessage(resMessage)
             })
     }
 
@@ -247,6 +254,7 @@ export default function CrudRestaurante() {
     return (
         <Main title={title}>
             {renderForm()}
+            <h4 className="msgErro">{message}</h4>
             {renderTable()}
         </Main>
     )

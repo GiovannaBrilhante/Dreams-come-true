@@ -22,6 +22,7 @@ export default function CrudCarometro() {
     const titulo = "Carômetro dos Alunos"
     const [listaAlunosCmt, setAlunos] = useState(stateInicial.listaAlunosCmt)
     const [listaDosCursos, setCursos] = useState(stateInicial.listaDosCursos)
+    const [message, setMessage] = useState("")
     const [curso, setCurso] = useState(stateInicial.curso)
 
     useEffect(() => {

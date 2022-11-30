@@ -19,6 +19,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "administrador,usuario")]
         public ActionResult<List<Filmes>> GetAll()
         {
             if (_context.Filmes is not null)
@@ -32,6 +33,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet("{FilmesId}")]
+        [Authorize(Roles = "administrador,usuario")]
         public ActionResult<List<Filmes>> Get(int FilmesId)
         {
             try
@@ -50,6 +52,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "administrador,usuario")]
         public async Task<ActionResult> post(Filmes model)
         {
             try
@@ -70,6 +73,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpPut("{FilmesId}")]
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> put(int FilmesId, Filmes dadosFilmesAlt)
         {
             try
@@ -95,6 +99,7 @@ namespace dreams_API.Controllers
         }
 
         [HttpDelete("{FilmesId}")]
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> delete(int FilmesId)
         {
             try

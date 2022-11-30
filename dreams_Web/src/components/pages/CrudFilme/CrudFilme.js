@@ -15,8 +15,11 @@ export default function CrudFilme(props) {
     const [filme, setFilme] = useState(initialState.filme)
     const [lista, setLista] = useState([])
     const [mens, setMens] = useState(null)
+    
+    const [message, setMessage] = useState("")
 
     useEffect(() => {
+        setMessage("")
         UserService.getUsuarioBoard().then(
             (response) => {
                 console.log("useEffect getUsuarioBoard: " + response.data)
@@ -32,7 +35,7 @@ export default function CrudFilme(props) {
                 console.log("_mens: " + _mens)
             }
         )
-    }, [])
+    }, [filme])
 
     const limparRegistro = () => setFilme(initialState.filme)
 
@@ -50,6 +53,9 @@ export default function CrudFilme(props) {
             })
             .catch((err) => {
                 console.error(err)
+
+                const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+                setMessage(resMessage)
             })
     }
 
@@ -82,6 +88,9 @@ export default function CrudFilme(props) {
             })
             .catch((err) => {
                 console.dir(err)
+
+                const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+                setMessage(resMessage)
             })
     }
 
@@ -99,7 +108,7 @@ export default function CrudFilme(props) {
                     value={filme.name}
                     onChange={(e) => atualizaCampo(e)}
                 />
-                 <label> Avaliação: </label>
+                <label> Avaliação: </label>
                 <select
                     name="avaliacao"
                     value={filme.avaliacao}
@@ -208,6 +217,7 @@ export default function CrudFilme(props) {
             {(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
                 <>
                     {renderForm()}
+                    <h4 className="msgErro">{message}</h4>
                     {renderTable()}
                 </>}
         </Main>

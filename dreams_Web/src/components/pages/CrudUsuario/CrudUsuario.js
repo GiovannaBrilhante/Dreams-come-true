@@ -6,8 +6,11 @@ const title = "Cadastro de Usuários"
 const urlAPI = "https://localhost:7037/api/usuario" 
 const initialState = {
     usuario : { id: 0, username: "", senha: "", cargo: ""},
-    lista: []
+    lista: [],
+    message: ""
 }
+
+
 export default class CrudUsuario extends Component {
     state = {...initialState}
     componentDidMount(){
@@ -27,7 +30,13 @@ export default class CrudUsuario extends Component {
         axios[metodo] (urlAPI, usuario).then(resp => {
             const lista = this.getListaAtualizada(resp.data)
             this.setState({ usuario: initialState.usuario, lista})
-        })
+        }).catch( (err) => {
+            console.dir(err)
+
+            const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
+            this.setState({ message: resMessage })
+        }
+        )
     }
 
     getListaAtualizada(usuario) {
@@ -116,6 +125,7 @@ export default class CrudUsuario extends Component {
         return (
             <Main title = {title}>
                 {this.renderForm()}
+                <h4 className="msgErro">{this.message}</h4>
                 {this.renderTable()}
             </Main>
         )
