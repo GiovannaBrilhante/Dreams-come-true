@@ -19,12 +19,14 @@ namespace dreams_API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<Filmes>> GetAll() {
-            if(_context.Filmes is not null)
+        public ActionResult<List<Filmes>> GetAll()
+        {
+            if (_context.Filmes is not null)
             {
                 return _context.Filmes.ToList();
             }
-            else {
+            else
+            {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
         }
@@ -35,10 +37,11 @@ namespace dreams_API.Controllers
             try
             {
                 var result = _context.Filmes.Find(FilmesId);
-                if(result == null)
+                if (result == null)
                 {
                     return NotFound();
-                } return Ok(result);
+                }
+                return Ok(result);
             }
             catch
             {
@@ -52,10 +55,10 @@ namespace dreams_API.Controllers
             try
             {
                 _context.Filmes.Add(model);
-                if(await _context.SaveChangesAsync() == 1)
+                if (await _context.SaveChangesAsync() == 1)
                 {
                     //return Ok();
-                    return Created($"/api/Filmes/{model.name}", model);
+                    return Created($"/api/Filmes/{model.idFilme}", model);
                 }
             }
             catch
@@ -63,7 +66,7 @@ namespace dreams_API.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados");
             }
             return BadRequest();
-            
+
         }
 
         [HttpPut("{FilmesId}")]
@@ -73,7 +76,7 @@ namespace dreams_API.Controllers
             {
                 //verifica se existe aluno a ser alterado
                 var result = await _context.Filmes.FindAsync(FilmesId);
-                if( FilmesId != null)
+                if (FilmesId != result.idFilme)
                 {
                     //método do EF
                     return BadRequest();
@@ -83,13 +86,13 @@ namespace dreams_API.Controllers
                 result.ano = dadosFilmesAlt.ano;
                 result.categoria = dadosFilmesAlt.categoria;
                 await _context.SaveChangesAsync();
-                return Created($"/api/Filmes/{dadosFilmesAlt.name}", dadosFilmesAlt);
+                return Created($"/api/Filmes/{dadosFilmesAlt.idFilme}", dadosFilmesAlt);
             }
             catch
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
-    }
+        }
 
         [HttpDelete("{FilmesId}")]
         public async Task<ActionResult> delete(int FilmesId)
@@ -98,7 +101,7 @@ namespace dreams_API.Controllers
             {
                 //verifica se existe aluno a ser excluido
                 var Filmes = await _context.Filmes.FindAsync(FilmesId);
-                if( Filmes == null)
+                if (Filmes == null)
                 {
                     //método do EF
                     return NotFound();
@@ -111,6 +114,6 @@ namespace dreams_API.Controllers
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Falha no acesso ao banco de dados.");
             }
+        }
     }
-}
 }

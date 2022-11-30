@@ -9,12 +9,21 @@ export default function Menu(props) {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser()
-        if (user) 
+        if (user)
             setCurrentUser(user)
     }, [])
 
     return (
         <nav className='menu'>
+            {currentUser ? (
+                <NavLink to="/logout" activeClassName="active">
+                    logout
+                </NavLink>
+            ) : (
+                <NavLink to="/login" activeClassName="active">
+                    Login
+                </NavLink>
+            )}
             <NavLink to="/" activeClassName="active">
                 Home
             </NavLink>

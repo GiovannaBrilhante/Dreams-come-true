@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react"
 import "./CrudFilme.css"
 import Main from "../../templates/Main"
 import UserService from "../../../services/UserService"
-import { BsFillPencilFill, BsFillTrash2Fill } from 'react-icons/bs'
+import { BsFillPencilFill, BsFillTrash2Fill } from "react-icons/bs"
 
 const title = "Cadastro de filmes"
-const API_URL = "http://localhost:5147/api/restaurante"
+const API_URL = "http://localhost:5006/api/Filmes"
 
 export default function CrudFilme(props) {
 
     const initialState = {
-        filme: { idFilme: 0, name: '', avaliacao: '', ano: 0, categoria: '' }
+        filme: { idFilme: 0, name: "", avaliacao: "", ano: 0, categoria: "" }
     }
     const [filme, setFilme] = useState(initialState.filme)
     const [lista, setLista] = useState([])
@@ -37,9 +37,9 @@ export default function CrudFilme(props) {
     const limparRegistro = () => setFilme(initialState.filme)
 
     const salvarFilme = () => {
-        const metodo = filme.idFilme ? 'put' : 'post'
-        const url = filme.idFilme ? `${API_URL}/${filme.idFilme}` : API_URL
-
+        const metodo = filme.idFilme ? "put" : "post"
+        const url = filme.idFilme != 0 ? `${API_URL}/${filme.idFilme}` : API_URL
+        filme.ano = Number(filme.ano)
         console.log(filme)
         UserService.salvar_filme(metodo, url, filme)
             .then((resp) => {
@@ -68,16 +68,16 @@ export default function CrudFilme(props) {
         })
     }
 
-    const atualizarFilme = (filme) => setFilme(initialState.filme)
+    const atualizarFilme = (filme) => setFilme(filme)
 
     const removerFilme = (filme) => {
-        if (!window.confirm('Confirma remoção do filme: ' + filme.name))
+        if (!window.confirm("Confirma remoção do filme: " + filme.name))
             return
 
         UserService.deletarFilme(filme.idFilme)
             .then((_resp) => {
                 const lista = getListaAtualizada(filme, false)
-                setFilme(initialState)
+                setFilme(initialState.filme)
                 setLista(lista)
             })
             .catch((err) => {
