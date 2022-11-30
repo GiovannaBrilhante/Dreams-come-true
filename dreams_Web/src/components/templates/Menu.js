@@ -16,16 +16,16 @@ export default function Menu(props) {
     return (
         <nav className='menu'>
             <NavLink to="/" activeClassName="active">
-                Home
+                Sonho
+            </NavLink>
+            <NavLink to="/carometro" activeClassName="active">
+                Realidade
             </NavLink>
             <NavLink to="/restaurantes" activeClassName="active">
                 Restaurantes
             </NavLink>
             <NavLink to="/filmes" activeClassName="active">
                 Filmes
-            </NavLink>
-            <NavLink to="/carometro" activeClassName="active">
-                Carômetro
             </NavLink>
             <NavLink to="/usuarios" activeClassName="active">
                 Usuários

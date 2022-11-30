@@ -18,10 +18,10 @@ export default class Home extends Component {
                         <div>
                             <h1 className="an-expansion an-inf-expansion">Dreams Come True</h1>
                             <p className="an-fadeIn  esconder">
-                                Seja bem vindo ao Dreams Come True, o seu website de sonhos. Aqui você pode registrar seus sonhos e compartilhar com seus amigos.
+                                Seja bem vindo ao Dreams Come True, o seu website de sonhos. Aqui você pode registrar seu filme dos sonhos e encontrar o restaurante que fará seu Dreams come true.
                             </p>
-                            <Link to="/restaurantes" >
-                                <a className="btnD1 an-fadeIn-btn">Conheça os Restaurantes</a>
+                            <Link to="/carometro" >
+                                <a className="btnD1 an-fadeIn-btn">Conheça os Restaurantes dessa mágica experiência </a>
                             </Link>
                         </div>
                     </div>

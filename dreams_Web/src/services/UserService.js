@@ -1,8 +1,9 @@
 import axios from "axios"
 
 const API_URL = "http://localhost:5006/api/"
-//Cadastro do filme: usuarios
+//Cadastro do filme: qualquer um
 //Cadastro do restaurante: usuarios
+//Cadastro dos usuarios: Administradores
 //Menu: todos
 
 const user = JSON.parse(localStorage.getItem('user'))

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+/*import React, { useState, useEffect } from "react"
 import "./CrudCarometro.css"
 
 import UserService from "../../../services/UserService"
@@ -103,5 +103,19 @@ export default function CrudCarometro() {
                 </div>
             </main>
         </div>
+    )
+}*/
+
+import React from "react"
+import "./CrudCarometro.css"
+import Main from "../../templates/Main"
+import SadDivertidamente from "../../../assets/images/alegria.png"
+
+export default function NotFoundPage(props) {
+    return (
+        <Main title={props.title ?? "Pagina em construção"}>
+            <h1>{props.content ?? "Volte mais tarde, essa página está em contrução."}</h1>
+            <img src={SadDivertidamente} className="not-found-page"/>
+        </Main>
     )
 }
