@@ -19,9 +19,8 @@ export default function Rotas() {
 
     useEffect(() => {
         const user = AuthService.getCurrentUser()
-        if (user) {
+        if (user) 
             setCurrentUser(user)
-        }
     }, [])
 
     return (
@@ -33,13 +32,19 @@ export default function Rotas() {
                 <Route exact path='/restaurantes'
                     element={
                         <Main title="Cadastro de restaurantes">
-                            <div>Não autorizado! </div>
+                            <div>Não autorizado! É necessário que faça login.</div>
                         </Main>} />
             )}
 
-            <Route path="/filmes" element={<CrudFilme />} /> 
+            <Route path="/filmes" element={<CrudFilme />} />
             <Route path="/realidade" element={<CrudRealidade />} />
-            <Route path="/usuarios" element={<CrudUsuario />} />
+            {currentUser ? (<Route path="/usuarios" element={<CrudUsuario />} />) : (
+                <Route exact path='/usuarios'
+                    element={
+                        <Main title="Cadastro de Usuarios">
+                            <div>Não autorizado! Apenas administradores. </div>
+                        </Main>} />
+            )}
             <Route path="/login" element={<Login />} />
             <Route path="/logout" element={<Logout />} />
 

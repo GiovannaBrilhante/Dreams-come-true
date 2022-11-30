@@ -22,19 +22,10 @@ const getCurrentUser = () => {
     return JSON.parse(localStorage.getItem("user"))
 }
 
-const headerAuthorization = () => {
-    return {
-        headers: {
-            Authorization: "Bearer " + getCurrentUser()?.token
-        }
-    }
-}
-
 const AuthService = {
     login,
     logout,
-    getCurrentUser,
-    headerAuthorization
+    getCurrentUser
 }
 
 export default AuthService

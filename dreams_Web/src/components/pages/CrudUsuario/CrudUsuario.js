@@ -3,7 +3,7 @@ import axios from "axios"
 import "./CrudUsuario.css"
 import Main from "../../templates/Main"
 const title = "Cadastro de Usuários"
-const urlAPI = "http://localhost:5006/api/Usuario"
+const urlAPI = "http://localhost:5006/api/usuario"
 const initialState = {
     usuario: { id: 0, username: "", senha: "", role: "" },
     lista: [],
@@ -123,7 +123,7 @@ export default class CrudUsuario extends Component {
                         <tr className='cabecTabela'>
                             <th className='tabTituloUsername'> Username</th>
                             {/* <th className='tabTituloSenha'> Senha</th> */}
-                            <th className='tabTitulorole'> Cargo</th>
+                            <th className='tabTituloCargo'> Role</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -73,7 +73,7 @@ export default class Home extends Component {
                                 </div>
                             </div>
 
-                            <div role="listitem" className="dev-card w-dyn-item">
+                            <div id="listitem" className="dev-card w-dyn-item">
                                 <div className="wrapper">
                                     <div className="card front-face">
                                         <div className="div-imagem-avatar">
