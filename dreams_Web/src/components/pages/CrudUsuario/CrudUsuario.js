@@ -3,34 +3,35 @@ import axios from "axios"
 import "./CrudUsuario.css"
 import Main from "../../templates/Main"
 const title = "Cadastro de Usuários"
-const urlAPI = "https://localhost:7037/api/usuario" 
+const urlAPI = "http://localhost:5006/api/Usuario"
 const initialState = {
-    usuario : { id: 0, username: "", senha: "", cargo: ""},
+    usuario: { id: 0, username: "", senha: "", cargo: "" },
     lista: [],
     message: ""
 }
 
+import AuthService from '../../../services/AuthService'
 
 export default class CrudUsuario extends Component {
-    state = {...initialState}
-    componentDidMount(){
-        axios(urlAPI).then(resp => {
-            this.setState({ lista: resp.data})
+    state = { ...initialState }
+    componentDidMount() {
+        axios(urlAPI, { headers: { Authorization: 'Bearer' + AuthService.getCurrentUser()?.token } }).then(resp => {
+            this.setState({ lista: resp.data })
         })
     }
 
-    limpar(){
-        this.setState({ usuario: initialState.usuario})
+    limpar() {
+        this.setState({ usuario: initialState.usuario })
     }
 
-    salvar(){
+    salvar() {
         const usuario = this.state.usuario
         const metodo = "post"
 
-        axios[metodo] (urlAPI, usuario).then(resp => {
+        axios[metodo](urlAPI, usuario, { headers: { Authorization: 'Bearer' + AuthService.getCurrentUser()?.token } }).then(resp => {
             const lista = this.getListaAtualizada(resp.data)
-            this.setState({ usuario: initialState.usuario, lista})
-        }).catch( (err) => {
+            this.setState({ usuario: initialState.usuario, lista })
+        }).catch((err) => {
             console.dir(err)
 
             const resMessage = (err.response && err.response.data && err.response.data.message) || err.message || err.toString()
@@ -39,59 +40,59 @@ export default class CrudUsuario extends Component {
         )
     }
 
-    getListaAtualizada(usuario) {
+    getListaAtualizada(usuario, add=true) {
         const lista = this.state.lista.filter(a => a.id !== usuario.id)
-        lista.unshift(usuario)
+        if (add) lista.unshift(usuario)
         return lista
     }
 
-    atualizaCampo(event){
+    atualizaCampo(event) {
         //clonar usuario a partit do state para não alterar o state diretamente
-        const usuario = {...this.state.usuario}
+        const usuario = { ...this.state.usuario }
         //atualizar o state
-        this.setState({ usuario})
+        this.setState({ usuario })
     }
 
-    renderForm(){
-        return(
+    renderForm() {
+        return (
             <div className="inclui-container">
-                <label> Username: </label>
-                <input 
+                <label> Username: </label>  
+                <input
                     type="text"
                     id="username"
-                    placeholder= "Qual seu username"
+                    placeholder="Qual seu username"
                     className="form-imput"
                     name="username"
                     value={this.state.usuario.username}
-                    onChange={ e => this.atualizaCampo(e)}
+                    onChange={e => this.atualizaCampo(e)}
                 />
                 <label> Função: </label>
-                <input 
+                <input
                     type="text"
                     id="cargo"
-                    placeholder= "Qual sua função? "
+                    placeholder="Qual sua função? "
                     className="form-imput"
                     name="cargo"
                     value={this.state.usuario.cargo}
-                    onChange={ e => this.atualizaCampo(e)}
+                    onChange={e => this.atualizaCampo(e)}
                 />
                 <label> Senha: </label>
-                <input 
+                <input
                     type="text"
                     id="senha"
-                    placeholder= "Qual será sua senha? "
+                    placeholder="Qual será sua senha? "
                     className="form-imput"
                     name="senha"
                     value={this.state.usuario.senha}
-                    onChange={ e => this.atualizaCampo(e)}
+                    onChange={e => this.atualizaCampo(e)}
                 />
                 <button className="btnSalvar"
-                    onClick={ e => this.salvar(e)}>
-                        Salvar
+                    onClick={e => this.salvar(e)}>
+                    Salvar
                 </button>
                 <button className="btnCancelar"
                     onClick={e => this.limpar(e)} >
-                        Cancelar
+                    Cancelar
                 </button>
             </div>
         )
@@ -101,15 +102,15 @@ export default class CrudUsuario extends Component {
             <div className="listagem" >
                 <table className='listaUsuarios' id='tblListaUsuarios'>
                     <thead>
-                        <tr className = 'cabecTabela'>
+                        <tr className='cabecTabela'>
                             <th className='tabTituloUsername'> Username</th>
-                            {/* <th className='tabTituloSenha'> Senha</th> */} 
+                            {/* <th className='tabTituloSenha'> Senha</th> */}
                             <th className='tabTituloCargo'> Cargo</th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.lista.map(
-                            (usuario) => 
+                            (usuario) =>
                                 <tr key={usuario.id}>
                                     <td>{usuario.username}</td>
                                     {/*<td>{usuario.senha}</td>*/}
@@ -123,7 +124,7 @@ export default class CrudUsuario extends Component {
     }
     render() {
         return (
-            <Main title = {title}>
+            <Main title={title}>
                 {this.renderForm()}
                 <h4 className="msgErro">{this.message}</h4>
                 {this.renderTable()}
