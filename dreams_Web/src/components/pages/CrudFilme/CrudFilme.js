@@ -99,16 +99,31 @@ export default function CrudFilme(props) {
                     value={filme.name}
                     onChange={(e) => atualizaCampo(e)}
                 />
-                <label> Avaliação: </label>
-                <input
-                    type="text"
-                    id="avaliacao"
-                    placeholder="Avaliação"
-                    className="form-input"
+                 <label> Avaliação: </label>
+                <select
                     name="avaliacao"
                     value={filme.avaliacao}
-                    onChange={(e) => atualizaCampo(e)}
-                />
+                    onChange={(e) => {
+                        atualizaCampo(e)
+                    }}
+                    required
+                >
+                    <option key="5.0" value="5.0">
+                        5.0
+                    </option>
+                    <option key="4.0" value="4.0">
+                        4.0
+                    </option>
+                    <option key="3.0" value="3.0">
+                        3.0
+                    </option>
+                    <option key="2.0" value="2.0">
+                        2.0
+                    </option>
+                    <option key="1.0" value="1.0">
+                        1.0
+                    </option>
+                </select>
                 <label> Ano: </label>
                 <input
                     type="text"

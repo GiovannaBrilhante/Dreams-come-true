@@ -1,27 +1,8 @@
-.select-container {
-    color: white;
-    margin: 20px 20px 20px 0px;
-    border-radius: 20px;
-    background-color: #211d2c;
-    padding: 8px 0px 8px 6px;
-
-    width: 25%;
-    border: 1.5px solid #bddff7;
-    border-collapse: collapse;
-}
-
-select{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 12px;
-}
-
-option{
-    font-size: 12px;
-}.tituloListagem {
+.tituloListagem {
     margin-left: 20px;
 }
 
-.lista {
+.listaAlunos {
     margin-left: 20px;
     font-family:
         'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -39,24 +20,11 @@ td {
     padding: 10px;
 }
 
-.tabTituloAvaliacao {
+.tabTituloRa {
     width: 100px;
 }
 
 .tabTituloNome {
-    width: 400px;
-}
-
-.tabTituloFilme {
-    width: 400px;
-}
-
-
-.tabTituloUrl {
-    width: 400px;
-}
-
-.tabTituloAcoes {
     width: 400px;
 }
 
