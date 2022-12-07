@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import axios from "axios"
 import "./CrudUsuario.css"
 import Main from "../../templates/Main"
 const title = "Cadastro de Usuários"

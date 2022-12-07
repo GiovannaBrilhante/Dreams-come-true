@@ -25,7 +25,8 @@ export default function CrudRestaurante() {
     const [listaRestaurantes, setListaRestaurantes] = useState(initialState.listaRestaurantes)
     const [listaFilmes, setListaFilmes] = useState(initialState.listaFilmes)
     const [message, setMessage] = useState("")
-    const [mens, setMens] = useState(initialState.mens)
+    // eslint-disable-next-line no-unused-vars
+    const [_mens, setMens] = useState(initialState.mens)
 
     //pra que [] ?
     useEffect(() => {
@@ -98,12 +99,6 @@ export default function CrudRestaurante() {
         newRestaurante[event.target.name] = event.target.value
         //atualizar o state
         setRestaurante(newRestaurante)
-    }
-
-    const atualizaFilme = (event) => {
-        const filme = { ...filme }
-        restaurante.idFilme = Number(event.target.value)
-        setRestaurante(restaurante)
     }
 
     const carregar = (restaurante) => {

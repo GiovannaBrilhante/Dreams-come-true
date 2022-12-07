@@ -4,8 +4,6 @@ import { Link } from "react-router-dom"
 import dev_gi from "../../../assets/images/dev_gi.png"
 import dev_ga from "../../../assets/images/dev_ga.jpeg"
 
-
-
 import { BsGithub } from "react-icons/bs"
 
 export default class Home extends Component {
@@ -121,8 +119,8 @@ export default class Home extends Component {
         return (
             <>
                 <main className="principal dark">
-                    {this.renderBanner()}
-                    {this.renderDevelopers()}
+                    {this.renderBanner()} { /* Renderiza o banner principal com o castelo e dreams come true*/}
+                    {this.renderDevelopers()} { /* Renderiza os desenvolvedores do site*/}
                 </main>
             </>
         )

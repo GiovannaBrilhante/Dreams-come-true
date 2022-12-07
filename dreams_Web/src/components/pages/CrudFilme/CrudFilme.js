@@ -223,7 +223,7 @@ export default function CrudFilme(_props) {
             {(mens != null) ? "Problema com conexão ou autorização (contactar administrador)." :
                 <>
                     {renderForm()}
-                    <h4 className="msgErro">{message ? 'Somente administrador e todos os campos preenchidos' : ""} </h4>
+                    <h4 className="msgErro">{message ? "Somente administrador e todos os campos preenchidos" : ""} </h4>
                     {renderTable()}
                 </>}
         </Main>

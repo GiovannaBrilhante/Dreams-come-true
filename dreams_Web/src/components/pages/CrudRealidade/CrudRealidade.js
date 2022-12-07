@@ -1,7 +1,8 @@
-/*import React, { useState, useEffect } from "react"
-import "./CrudCarometro.css"
+import React, { useState, useEffect } from "react"
+import "./CrudRealidade.css"
 
 import UserService from "../../../services/UserService"
+import Main from "../../templates/Main"
 
 const avatarAleatorio = () => {
     // Gera um numero, converte para a base 36 e dps pega os 7 primeiros caracteres
@@ -9,51 +10,51 @@ const avatarAleatorio = () => {
     const avatarUrl = `https://avatars.dicebear.com/api/big-smile/${codigo}.svg`
 
     return avatarUrl
-
 }
 
 export default function CrudCarometro() {
     const stateInicial = {
-        curso: { id: 0, codCurso: "", nomeCurso: "", periodo: "" },
-        listaAlunosCmt: [],
-        listaDosCursos: [],
+        filme: { idFilme: "", avaliacao: "", name: "", categoria: "" },
+        listaRealidades: [],
+        listaFilmes: [],
     }
 
-    const titulo = "Carômetro dos Alunos"
-    const [listaAlunosCmt, setAlunos] = useState(stateInicial.listaAlunosCmt)
-    const [listaDosCursos, setCursos] = useState(stateInicial.listaDosCursos)
+    const titulo = "Aqui seus sonhos viram realidade"
+    const [listaRealidades, setRealidades] = useState(stateInicial.listaRealidades)
+    const [listaFilmes, setFilmes] = useState(stateInicial.listaFilmes)
+    // eslint-disable-next-line no-unused-vars
     const [message, setMessage] = useState("")
-    const [curso, setCurso] = useState(stateInicial.curso)
+    const [filme, setFilme] = useState(stateInicial.filme)
 
     useEffect(() => {
-        UserService.getPublicCarometro
-            .getCursos()
-            .then((resp) => setCursos(resp.data))
+        UserService.getPublicContent
+            .getFilmes()
+            .then((resp) => setFilmes(resp.data))
             .catch((err) => {
                 console.log(err)
             })
-    }, [curso])
+    }, [filme])
 
-    const filtrarAlunosPorCurso = async (event) => {
-        const codigoCurso = event.target.value
-        if (codigoCurso === "") {
-            setAlunos(stateInicial.listaAlunosCmt)
+    const filtrarRestaurantesPorFilme = async (event) => {
+        const nomeFilme = event.target.value
+        if (nomeFilme === "") {
+            setRealidades(stateInicial.listaRealidades)
             return
         }
-        curso.codCurso = Number(codigoCurso)
-        const listaDeAlunos = await getListaAlunosDoCurso(curso.codCurso)
-        if (Array.isArray(listaDeAlunos)) {
-            setAlunos(listaDeAlunos)
-            setCurso(curso)
+        filme.name = nomeFilme
+        const listaRestaurantes = await getListaRestauranteDoFilme(nomeFilme)
+        if (Array.isArray(listaRestaurantes)) {
+            setRealidades(listaRestaurantes)
+            setFilme(filme)
         }
     }
 
-    const getListaAlunosDoCurso = async (codCurso) => {
-        return UserService.getPublicCarometro.getAlunos()
+    const getListaRestauranteDoFilme = async (nomeFilme) => {
+        return UserService.getPublicContent.getRealidades()
             .then((resp) => {
-                const listaDeAlunos = resp.data
-                return listaDeAlunos.filter(
-                    (aluno) => aluno.codCurso === codCurso
+                const listaRestaurantes = resp.data
+                return listaRestaurantes.filter(
+                    (rest) => rest.nameFilme === nomeFilme
                 )
             })
             .catch((err) => {
@@ -65,11 +66,11 @@ export default function CrudCarometro() {
         return (
             <div className="select-container">
                 <label> Curso: </label>
-                <select className="select-carometro" value={curso.codCurso} onChange={e => { filtrarAlunosPorCurso(e) }} required>
+                <select className="select-carometro" value={filme.name} onChange={e => { filtrarRestaurantesPorFilme(e) }} required>
                     <option key="" value="" disabled={true}>  -- Escolha um curso -- </option>
-                    {listaDosCursos.map((curso) =>
-                        <option key={curso.id} name="codCurso" value={curso.codCurso}>
-                            {curso.codCurso} - {curso.nomeCurso} : {curso.periodo}
+                    {listaFilmes.map((filme) =>
+                        <option key={filme.id} name="codCurso" value={filme.name}>
+                            {filme.avaliacao} : {filme.name} - {filme.categoria}
                         </option>
                     )}
                 </select>
@@ -80,12 +81,13 @@ export default function CrudCarometro() {
 
     const renderCarometro = () => (
         <div className="card-row">
-            {listaAlunosCmt.length > 0 ?
-                listaAlunosCmt.map((aluno) => (
-                    <div className="card draw-border" key={aluno.id} >
-                        <img className="card-img" src={avatarAleatorio()} alt={"Avatar: " + aluno.nome} />
-                        <span className="card-title">{aluno.nome}</span>
-                        <span className="card-description">RA: {aluno.ra} | Curso: {aluno.codCurso}</span>
+            {listaRealidades.length > 0 ?
+                listaRealidades.map((restaurante) => (
+                    <div className="card dream draw-border" key={restaurante.idRestaurante} >
+                        <img className="card-img" src={restaurante.url} alt={"Avatar: " + restaurante.name} />
+                        <span className="card-title">{restaurante.name}</span>
+                        <span className="card-description">Nota: {restaurante.avaliacao}</span>
+                        <span className="card-description">Filme: {restaurante.nameFilme}</span>
                     </div>
                 )) : null}
         </div>
@@ -93,6 +95,7 @@ export default function CrudCarometro() {
 
     return (
         <div className="container carometro">
+            <h4 className="msgErro">{message}</h4>
             <div className="header">
                 <h2>{titulo}</h2>
             </div>
@@ -103,19 +106,8 @@ export default function CrudCarometro() {
                 </div>
             </main>
         </div>
-    )
-}*/
 
-import React from "react"
-import "./CrudRealidade.css"
-import Main from "../../templates/Main"
-import SadDivertidamente from "../../../assets/images/alegria.png"
-
-export default function NotFoundPage(props) {
-    return (
-        <Main title={props.title ?? "Pagina em construção"}>
-            <h1>{props.content ?? "Volte mais tarde, essa página está em contrução."}</h1>
-            <img src={SadDivertidamente} className="not-found-page"/>
-        </Main>
     )
 }
+
+

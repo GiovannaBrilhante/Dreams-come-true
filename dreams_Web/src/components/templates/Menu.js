@@ -2,9 +2,9 @@ import "./Menu.css"
 import React, { useState, useEffect } from "react"
 import { NavLink } from "react-router-dom"
 
-import AuthService from '../../services/AuthService'
+import AuthService from "../../services/AuthService"
 
-export default function Menu(props) {
+export default function Menu(_props) {
     const [currentUser, setCurrentUser] = useState(undefined)
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export default function Menu(props) {
 
     return (
         <nav className='menu'>
-            <NavLink to="/" activeClassName="active">
+            <NavLink to="/" activeClassName="active"> {/* activeClassName="active" = className={({ isActive }) => isActive? "active": ''}*/}
                 Sonho
             </NavLink>
             <NavLink to="/realidade" activeClassName="active">
