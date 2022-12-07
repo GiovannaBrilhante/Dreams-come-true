@@ -11,10 +11,10 @@ const initialState = {
 
 import UserService from "../../../services/UserService"
 
-export default class CrudUsuario extends Component {
+export default class CrudUsuario extends Component { // Exibe a pagina de cadastro e lista de usuarios
     state = { ...initialState }
-    componentDidMount() {
-        UserService.getUsuarioBoard().then(
+    componentDidMount() { // Executa assim que o componente é renderizado
+        UserService.getUsuarioBoard().then(  // Atualiza a lista de usuarios, buscando na API
             (response) => {
                 console.log("useEffect getUsuarioBoard: " + response.data)
                 this.setState({ lista: response.data })
@@ -36,12 +36,12 @@ export default class CrudUsuario extends Component {
     }
 
 
-    salvar() {
+    salvar() { // Salva o usuario no banco de dados
         const usuario = this.state.usuario
         const metodo = usuario.id ? "put" : "post"
         const url = usuario.id != 0 ? `${urlAPI}/${usuario.id}` : urlAPI
 
-        UserService.salvar_usuario(metodo, url, usuario).then(
+        UserService.salvar_usuario(metodo, url, usuario).then( 
             (resp) => {
                 const lista = this.getListaAtualizada(resp.data)
                 this.setState({ usuario: initialState.usuario, lista })
@@ -56,16 +56,16 @@ export default class CrudUsuario extends Component {
         )
     }
 
-    getListaAtualizada(usuario, add = true) {
+    getListaAtualizada(usuario, add = true) { 
         const lista = this.state.lista.filter(a => a.id !== usuario.id)
         if (add) lista.unshift(usuario)
         return lista
     }
 
-    atualizaCampo(event) {
+    atualizaCampo(event) { // Atualiza o campo do usuario, com o valor digitado
         //clonar usuario a partit do state para não alterar o state diretamente
         const usuario = { ...this.state.usuario }
-        usuario[event.target.name] = event.target.value
+        usuario[event.target.name] = event.target.value // Encontra o campo e atualiza o valor
         //atualizar o state
         this.setState({ usuario })
     }
@@ -142,9 +142,12 @@ export default class CrudUsuario extends Component {
     render() {
         return (
             <Main title={title}>
-                {this.renderForm()}
+                {this.renderForm()} { /* Renderiza o formulario de cadastro*/}
+
+                { /* Cuida das mensagens de erro provenientes da API, seja de autorização ou problemas de conexão*/}
                 <h4 className="msgErro">{this.state.message ? "Problema com conexão ou autorização (contactar administrador)." : ""}</h4>
-                {this.renderTable()}
+                
+                {this.renderTable()}  { /* Renderiza a lista*/}
             </Main>
         )
     }
