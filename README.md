@@ -1,6 +1,8 @@
 <h2 align="center">
-    <img alt="Dreams Banner" title="" src="https://user-images.githubusercontent.com/53992405/201239750-794c4776-c013-45a3-8712-21f2c9897d77.jpg" width="500px" />
+    <img alt="Dreams Banner" title="" src="https://user-images.githubusercontent.com/53992405/209487489-261fa192-36da-4ad6-99b8-6e76fadd29ea.png" height="250px" width="500px" />
+    <img alt="Dreams Banner" title="" src="https://user-images.githubusercontent.com/53992405/209487540-a44e26d6-eb29-4ae4-a577-23c4a8d5ce49.png" height="250px"   width="400px" />
 </h2>
+
 <p align="center">
   <h1 align="center">Dreams Come True | React & DotNet :rocket:</h1>
 </p>
